@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-from models import User
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///safespace.db'
@@ -53,6 +53,8 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+from models import User
 
 if __name__ == '__main__':
     db.create_all()
