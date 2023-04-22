@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-
+from werkzeug.security import generate_password_hash, check_password_hash
+from models import User
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///safespace.db'
-app.secret_key = 'my-secret-key'  # Set a secret key for Flask-Login to use
+app.secret_key = 'my-secret-key'
 db = SQLAlchemy(app)
+
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'  # Specify the login route
+login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -22,14 +24,14 @@ def index():
 def signup():
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['password']
+        password = generate_password_hash(request.form['password'])
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         date_of_birth = request.form['date_of_birth']
         user = User(email=email, password=password, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth)
         db.session.add(user)
         db.session.commit()
-        login_user(user)  # Log the user in after signing up
+        login_user(user)
         return redirect(url_for('index'))
     return render_template('signup.html')
 
@@ -41,7 +43,7 @@ def login():
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
-        if user and user.password == password:
+        if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('index'))
         else:
@@ -54,10 +56,9 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-from models import User
-
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
+
 
 
