@@ -24,16 +24,26 @@ def index():
 def signup():
     if request.method == 'POST':
         email = request.form['email']
-        password = generate_password_hash(request.form['password'])
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         date_of_birth = request.form['date_of_birth']
-        user = User(email=email, password=password, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth)
+
+        if not email or not password or not first_name or not last_name or not date_of_birth:
+            return render_template('signup.html', error='All fields are required.')
+
+        if password != confirm_password:
+            return render_template('signup.html', error='Passwords do not match')
+
+        hashed_password = generate_password_hash(password)
+        user = User(email=email, password=hashed_password, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth)
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return redirect(url_for('index'))
     return render_template('signup.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
