@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import User
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///safespace.db'
@@ -28,7 +28,7 @@ def signup():
         confirm_password = request.form['confirm_password']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
-        date_of_birth = request.form['date_of_birth']
+        date_of_birth = datetime.strptime(request.form['date_of_birth'], '%Y-%m-%d')
 
         if not email or not password or not first_name or not last_name or not date_of_birth:
             return render_template('signup.html', error='All fields are required.')
@@ -66,6 +66,11 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+from models import User
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
