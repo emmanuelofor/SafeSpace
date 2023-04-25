@@ -20,6 +20,10 @@ def load_user(user_id):
 def index():
     return render_template('index.html')
 
+@app.route('/therapists')
+def therapists():
+    return render_template('therapists.html')
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
