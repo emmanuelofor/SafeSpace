@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from models import User, Therapist
+
 
 
 app = Flask(__name__)
@@ -98,7 +98,7 @@ def create_tables():
         db.session.commit()
 
 
-from models import User
+from models import User, Therapist
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
