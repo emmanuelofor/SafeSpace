@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from models import User, Therapist
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///safespace.db'
@@ -70,9 +72,31 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/therapists')
+def therapists():
+    all_therapists = Therapist.query.all()
+    return render_template('therapists.html', therapists=all_therapists)
+
+
 @app.before_first_request
 def create_tables():
     db.create_all()
+    
+    # Insert example therapists
+    if not Therapist.query.first():
+        example_therapists = [
+            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg", therapist_type="Psychiatrist"),
+            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg", therapist_type="Psychiatrist"),
+            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/dr_kwame_obeng.jpg", therapist_type="Psychologist"),
+            Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg", therapist_type="Psychologist"),
+            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/fred_ola.jpg", therapist_type="Therapist"),
+            Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg", therapist_type="Therapist")
+        ]
+
+        for therapist in example_therapists:
+            db.session.add(therapist)
+        db.session.commit()
+
 
 from models import User
 if __name__ == '__main__':
