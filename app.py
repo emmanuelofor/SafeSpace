@@ -22,9 +22,6 @@ def load_user(user_id):
 def index():
     return render_template('index.html')
 
-@app.route('/therapists')
-def therapists():
-    return render_template('therapists.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -85,12 +82,12 @@ def create_tables():
     # Insert example therapists
     if not Therapist.query.first():
         example_therapists = [
-            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg", therapist_type="Psychiatrist"),
-            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg", therapist_type="Psychiatrist"),
-            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/dr_kwame_obeng.jpg", therapist_type="Psychologist"),
-            Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg", therapist_type="Psychologist"),
-            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/fred_ola.jpg", therapist_type="Therapist"),
-            Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg", therapist_type="Therapist")
+            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
+            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
+            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/dr_kwame_obeng.jpg"),
+            Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg"),
+            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/fred_ola.jpg"),
+            Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
         ]
 
         for therapist in example_therapists:

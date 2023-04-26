@@ -14,4 +14,4 @@ class Therapist(db.Model):
     name = db.Column(db.String(100), nullable=False)
     credentials = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String(200), nullable=False)
-    therapist_type = db.Column(db.String(50), nullable=False)
+    
