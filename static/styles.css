@@ -143,16 +143,23 @@ body {
   text-decoration: underline;
 }
 
-/* Add this rule for clear fix */
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Modify auth-btn rule */
 .auth-btn {
   margin-top: 20px;
-  display: inline-block; 
+  margin-left: 5px;
+  margin-right: 5px;
+  white-space: nowrap; 
+}
+
+
+.separator {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
