@@ -142,3 +142,8 @@ body {
 .signup a:hover {
   text-decoration: underline;
 }
+
+.auth-btn {
+  margin-top: 20px;
+}
+
