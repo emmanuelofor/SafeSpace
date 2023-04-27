@@ -4,6 +4,8 @@ from flask_login import LoginManager, login_user, current_user, logout_user, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///safespace.db'
 app.secret_key = 'my-secret-key'
@@ -20,9 +22,6 @@ def load_user(user_id):
 def index():
     return render_template('index.html')
 
-@app.route('/therapists')
-def therapists():
-    return render_template('therapists.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -70,14 +69,41 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/therapists')
+def therapists():
+    all_therapists = Therapist.query.all()
+    return render_template('therapists.html', therapists=all_therapists)
+
+
 @app.before_first_request
 def create_tables():
     db.create_all()
+    
+    # Insert example therapists
+    if not Therapist.query.first():
+        example_therapists = [
+            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
+            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
+            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/dr_kwame_obeng.jpg"),
+            Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg"),
+            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/fred_ola.jpg"),
+            Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
+        ]
 
-from models import User
+        for therapist in example_therapists:
+            db.session.add(therapist)
+        db.session.commit()
+
+
+from models import User, Therapist
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
 
 
 
+from flask import Flask
+import os
+
+app = Flask(__name__)
+print(os.path.abspath(__file__))
