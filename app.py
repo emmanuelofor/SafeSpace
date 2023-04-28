@@ -82,13 +82,11 @@ def create_tables():
     # Insert example therapists
     if not Therapist.query.first():
         example_therapists = [
-            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
-            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
-            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/dr_kwame_obeng.jpg"),
-            Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg"),
-            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/fred_ola.jpg"),
-            Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
-        ]
+            Therapist(name="Dr.Joyce Author", credentials="Clinical Psychologist", image="images/dr_joyce_author.jpg"),
+            Therapist(name="Dr.Sophie Green", credentials="Psychiatrist, PhD, MBA", image="images/dr_sophie_green.jpg"),
+            Therapist(name="Emily Awudi", credentials="Psychiatric Nurse Practitioner, MSC, RMN", image="images/dr_emily_awudi.jpg"),
+            Therapist(name="Christine Peter", credentials="Social Worker, BSN", image="images/dr_christine_peter_jpg"),
+           ]
 
         for therapist in example_therapists:
             db.session.add(therapist)
