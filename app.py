@@ -99,9 +99,3 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 
-
-from flask import Flask
-import os
-
-app = Flask(__name__)
-print(os.path.abspath(__file__))
