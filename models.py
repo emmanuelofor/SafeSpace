@@ -9,3 +9,9 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(80), nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
 
+class Therapist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    credentials = db.Column(db.String(200), nullable=False)
+    image = db.Column(db.String(200), nullable=False)
+    

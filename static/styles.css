@@ -142,3 +142,24 @@ body {
 .signup a:hover {
   text-decoration: underline;
 }
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-btn {
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  white-space: nowrap; 
+}
+
+
+.separator {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
