@@ -29,8 +29,8 @@ def signup():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
+        full_name = request.form['full_name']
+        # last_name = request.form['last_name']
         date_of_birth = datetime.strptime(request.form['date_of_birth'], '%Y-%m-%d')
 
         if not email or not password or not first_name or not last_name or not date_of_birth:
@@ -50,8 +50,8 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('index'))
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']

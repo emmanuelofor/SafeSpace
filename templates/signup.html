@@ -4,42 +4,53 @@
       <title>SafeSpace - Create Your Account</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet"  href="{{ url_for('static', filename='styles.css') }}">
+      <link rel="stylesheet"  href="{{ url_for('static', filename='sign_up.css') }}">
+
+      <!-- Font Icons Link -->
+      <script src="https://kit.fontawesome.com/d4d5bc1410.js" crossorigin="anonymous"></script> 
    </head>
    <body>
+
       <div class="container">
-         <div class="logo">
-            <h1>SafeSpace</h1>
-         </div>
-         <div class="form-container">
-            <h2>Create Your Account</h2>
+         <div class="form-box">
+            <h1 id="title">Create Your Account</h1>
+
             <form action="{{ url_for('signup') }}" method="post" enctype="multipart/form-data">
-               <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required>
+               <div class="input-group">
+
+                  <div class="input-field" id="nameField">
+                        <label for="full_name"></label>
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="full_name" placeholder="Full Name" required>
+                  </div>
+
+                  <div class="input-field">
+                        <label for="date_of_birth"></label>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" id="date_of_birth" placeholder="Date of Birth" required>
+                  </div>
+
+                  <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="email" placeholder="Email" required>
+                  </div>
+
+                  <div class="input-field">
+                     <i class="fa-solid fa-lock-open"></i>
+                     <input type="password" placeholder="Password">
+                  </div>
+
+                  <div class="input-field">
+                     <i class="fa-solid fa-lock"></i>
+                     <input type="password" placeholder="Confirm Password">
+                  </div>
+
+                  <p>Already have an account? <a href="{{ url_for('login') }}">Click Here!</a></p>
+
                </div>
-               <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" id="password" name="password" required>
-               </div>
-               <div class="form-group">
-                  <label for="confirm_password">Confirm Password</label>
-                  <input type="password" id="confirm_password" name="confirm_password" required>
-               </div>
-               <div class="form-group">
-                  <label for="first_name">First Name</label>
-                  <input type="text" id="first_name" name="first_name" required>
-               </div>
-               <div class="form-group">
-                  <label for="last_name">Last Name</label>
-                  <input type="text" id="last_name" name="last_name" required>
-               </div>
-               <div class="form-group">
-                  <label for="date_of_birth">Date of Birth</label>
-                  <input type="date" id="date_of_birth" name="date_of_birth" required>
-               </div>
-               <div class="form-group">
-                  <input type="submit" value="Sign up" class="btn">
+
+               <div class="btn-field">
+                  <button class="btn" type="submit">Sign Up</button>
                </div>
             </form>
          </div>
