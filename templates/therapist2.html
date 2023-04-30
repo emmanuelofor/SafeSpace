@@ -10,7 +10,7 @@
     <div class="therapist-container">
         {% for therapist in therapists %}
         <div class="therapist-card">
-            <img src="{{ therapist.image }}" alt="{{ therapist.name }}" />
+            <img src="{{ url_for('static', filename=therapist.image) }}" alt="{{ therapist.name }}" />
             <h2>{{ therapist.name }}</h2>
             <p>{{ therapist.credentials }}</p>
             <button>Book a session now!</button>
@@ -19,5 +19,6 @@
     </div>
 </body>
 </html>
+
 
      

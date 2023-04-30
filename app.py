@@ -83,7 +83,7 @@ def therapist2():
 @app.before_first_request
 def create_tables():
     db.create_all()
-    
+
     # Insert example therapists
     if not Therapist.query.first():
         example_therapists = [
