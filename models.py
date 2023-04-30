@@ -11,7 +11,8 @@ class User(UserMixin, db.Model):
 
 class Therapist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    credentials = db.Column(db.String(200), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    credentials = db.Column(db.String(120), nullable=False)
     image = db.Column(db.String(200), nullable=False)
+    
     

@@ -13,19 +13,9 @@
 		<p>At SafeSpace, we understand that everyone's mental health journey is unique, and we strive to offer a personalized approach to therapy. Our platform allows you to connect with therapists who specialize in your specific needs and preferences. You can choose from a diverse group of licensed therapists who offer individualized care and support.</p>
 		<p>Connecting with a therapist through SafeSpace is easy, convenient, and confidential. You can access therapy from the comfort of your own home, on your own schedule. Our therapists are trained to provide you with the tools and support you need to improve your mental health and well-being.</p>
 		<p>Don't let mental health challenges hold you back from living your best life. Join SafeSpace today and connect with a licensed therapist to start your mental health journey.</p>
-		<a href="#" class="button">Connect to a Therapist</a>
-	</div>
-
-	<!-- Therapist list section -->
-	<div class="therapist-list">
-	    {% for therapist in therapists %}
-	        <div class="therapist-card">
-	            <img src="{{ url_for('static', filename=therapist.image) }}" alt="{{ therapist.name }}">
-	            <h3>{{ therapist.name }}</h3>
-	            <p>{{ therapist.credentials }}</p>
-	        </div>
-	    {% endfor %}
+		<a href="{{ url_for('therapist2') }}" class="button">Connect to a Therapist</a>
 	</div>
 </body>
 </html>
+
 
