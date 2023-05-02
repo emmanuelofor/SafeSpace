@@ -10,7 +10,8 @@
   <!-- 
     - favicon
   -->
-  <link rel="shortcut icon" href="./safe-favivon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/safe-favicon.svg') }}" type="image/svg+xml">
+
 
   <!-- 
     - custom css link
@@ -88,7 +89,7 @@
       <div class="header-action">
         
 
-        <a href="/app/sign_in.html" class="btn btn-primary has-after">Sign In</a>
+        <a href="{{ url_for('login') }}" class="btn btn-primary has-after">Sign In</a>
       </div>
 
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
@@ -120,7 +121,7 @@
               SafeSpace - A Mobile and Web Application Providing Social Support, Professional Assistance, Journaling, Emotional Assessments, and Creative Expression for Mental Wellness
             </p>
 
-            <a href="/app/sign_up.html" class="btn btn-secondary has-after">Sign Up</a>
+            <a href="{{ url_for('signup') }}" class="btn btn-secondary has-after">Sign Up</a>
           </div>
 
           <figure class="hero-banner" data-reveal>
