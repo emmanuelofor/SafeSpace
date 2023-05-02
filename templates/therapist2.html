@@ -13,7 +13,9 @@
             <img src="{{ url_for('static', filename=therapist.image) }}" alt="{{ therapist.name }}" />
             <h2>{{ therapist.name }}</h2>
             <p>{{ therapist.credentials }}</p>
-            <button>Book a session now!</button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ywjYgeQYRtwkM8toJzbrLLB6aRpgztSCyzRTIjarxApIVQ/viewform?usp=pp_url" target="_blank">
+                <button>Book a session now!</button>
+            </a>
         </div>
         {% endfor %}
     </div>

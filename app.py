@@ -29,8 +29,8 @@ def signup():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
-        full_name = request.form['full_name']
-        # last_name = request.form['last_name']
+        first_name = request.form['full_name']
+        last_name = request.form['last_name']
         date_of_birth = datetime.strptime(request.form['date_of_birth'], '%Y-%m-%d')
 
         if not email or not password or not first_name or not last_name or not date_of_birth:
