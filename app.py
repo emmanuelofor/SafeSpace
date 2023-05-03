@@ -87,17 +87,31 @@ def create_tables():
     # Insert example therapists
     if not Therapist.query.first():
         example_therapists = [
-            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
-            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
-            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/dr_kwame_obeng.jpg"),
+            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
+            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
+            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/fred_ola.jpg"),
             Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg"),
-            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/fred_ola.jpg"),
+            Therapist(name="Fred Ola", credentials="LCSW, Therapist", image="images/dr_kwame_obeng.jpg"),
             Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
         ]
 
         for therapist in example_therapists:
             db.session.add(therapist)
         db.session.commit()
+
+    else: 
+         example_therapists = [
+            ["Dr. Farida Odewale","MD, Psychiatrist", "images/dr_godfred_owusu.jpg"],
+            ["Dr. Godfred Owusu", "MD, Psychiatrist", "images/dr_farida_odewale.jpg"],
+            ["Dr. Kwame Obeng", "PhD, Psychologist", "images/fred_ola.jpg"],
+            ["Dr. Abena Peprah","PhD, Psychologist","images/dr_abena_peprah.jpg"],
+            ["Fred Ola", "LCSW, Therapist", "images/dr_kwame_obeng.jpg"],
+            ["Maame Esiri", "LMFT, Therapist","images/maame_esiri.jpg"]
+         ]
+
+         for therapist in example_therapists:
+             db.update(Therapist).where(Therapist.name == therapist[0]).values(image = therapist[2])
+             db.session.commit()
 
 
 from models import User, Therapist
