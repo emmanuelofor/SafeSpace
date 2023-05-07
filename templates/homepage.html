@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
   </head>
   <body>
+
     <nav>
       <ul>
         <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -27,7 +28,11 @@
       </div>
       <div class="connect">
         <h3 style="color:#2C599D;">Sad?</h3>
-        <p style="color:#5B84C4;"><a href="#">Connect to a listener.</a></p>
+        <p style="color:#5B84C4;">
+          <a href="#">
+            <button>Connect to a listener.</button>
+          </a>
+        </p>
       </div>
       <div class="get-help">
         <h3 style="color:#2C599D;">Hollow?</h3>
