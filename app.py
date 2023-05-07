@@ -20,7 +20,16 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html', current_user=current_user)
+    if current_user.is_authenticated:
+        return render_template('homepage.html', current_user=current_user)
+    else:
+        return render_template('index.html', current_user=current_user)
+
+
+@app.route('/homepage')
+@login_required
+def homepage():
+    return render_template('homepage.html', current_user=current_user)    
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -58,7 +67,7 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect(url_for('homepage'))  # Redirects to the homepage
         else:
             return render_template('login.html', error='Invalid email or password')
     return render_template('login.html')
