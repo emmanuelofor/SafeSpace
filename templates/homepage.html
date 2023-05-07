@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>SafeSpace - Home</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
   </head>
   <body>
     <nav>
@@ -31,7 +31,6 @@
       <div class="get-help">
         <h3 style="color:#2C599D;">Hollow?</h3>
         <p style="color:#2C599D;"> <a href="therapists.html">Get help from a professional.</a></p>
-
       </div>
       <div class="not-sure">
         <h3 style="color:#C9DBF6;">Not sure?</h3>
@@ -40,3 +39,4 @@
     </main>
   </body>
 </html>
+
