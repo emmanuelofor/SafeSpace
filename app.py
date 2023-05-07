@@ -20,7 +20,7 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', current_user=current_user)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -50,8 +50,8 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('index'))
+    if current_user.is_authenticated:
+         return redirect(url_for('index'))
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
