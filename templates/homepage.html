@@ -7,15 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeSpace</title>
 
-    <!-- 
-    - favicon
-  -->
-    <link rel="shortcut icon" href="./safe-favivon.svg" type="image/svg+xml">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/safe-favicon.svg') }}" type="image/svg+xml">
 
-    <!-- 
-    - custom css link
-  -->
-    <link rel="stylesheet" href="./assets/css/home.css">
+    <!-- custom css link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
 
     <!-- 
     - google font link
@@ -51,7 +47,7 @@
         <div class="container">
 
             <a href="#" class="logo">
-                <img src="./assets/images/logo.svg" width="148" height="38" alt="SafeSpace">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" width="148" height="38" alt="SafeSpace Logo">
             </a>
 
             <nav class="navbar" data-navbar>
@@ -60,7 +56,7 @@
                 </button>
 
                 <a href="#" class="logo">
-                    <img src="./assets/images/logo.svg" width="148" height="38" alt="SafeSpace">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" width="148" height="38" alt="SafeSpace Logo">
                 </a>
 
                 <ul class="navbar-list">
@@ -87,7 +83,7 @@
             <div class="header-action">
 
 
-                <a href="./index.html" class="btn btn-primary has-after">Log Out</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-primary has-after">Log Out</a>
             </div>
 
             <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
@@ -110,8 +106,7 @@
                 - #HERO
             -->
 
-            <section class="section hero has-bg-image" aria-label="home"
-                style="background-image: url('./assets')">
+            <section class="section hero has-bg-image" aria-label="home">
                 <div class="container">
 
                     <div class="hero-content" data-reveal="left">
@@ -124,11 +119,11 @@
 
 
             <section class="section feature has-bg-image" aria-labelledby="feature-label"
-                style="background-image: url('./assets/images/hero-bg.png')">
+                style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')">
                 <div class="container">
             
                     <figure class="feature-banner" data-reveal="left">
-                        <img src="./assets/images/feature-banner.png" width="680" height="704" loading="lazy" alt="feature banner"
+                        <img src="{{ url_for('static', filename='images/feature-banner.png') }}"  width="680" height="704" loading="lazy" alt="feature banner"
                             class="w-100">
                     </figure>
             
@@ -169,7 +164,7 @@
                     <div class="footer-brand">
         
                         <a href="#" class="logo">
-                            <img src="./assets/images/logo-footer.svg" width="148" height="38" alt="SafeSpace - Home">
+                            <img src="{{ url_for('static', filename='images/logo-footer.svg') }}" width="148" height="38" alt="SafeSpace - Home">
                         </a>
         
                         <h2 class="h2 section-title">Your Online Haven</h2>

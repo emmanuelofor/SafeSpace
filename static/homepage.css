@@ -1,4 +1,16 @@
 /*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+/**
+ * copyright 2022 codewithsadee
+ */
+
+
+
+
+
+/*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
 
@@ -8,7 +20,7 @@
    * typography
    */
 
-  --ff-poppins: "Roboto", sans-serif;
+  --ff-poppins: "Poppins", sans-serif;
 
   --fs-1: 7rem;
   --fs-2: 4.2rem;
@@ -278,6 +290,11 @@ body.active {
   margin-block-end: 20px;
 }
 
+.grid-list {
+  display: grid;
+  gap: 60px;
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(20px);
@@ -397,6 +414,8 @@ body.active {
 }
 
 .nav-open-btn {
+  padding: 12px;
+  color: #2c599d;
   font-size: 2.2rem;
 }
 
@@ -472,9 +491,7 @@ body.active {
   margin-block: 8px 40px;
 }
 
-.hero .shape {
-  display: none;
-}
+
 
 
 
@@ -636,6 +653,16 @@ body.active {
     border-radius: var(--radius-20);
   }
 
+  .hero .shape-1 {
+    left: 0;
+    bottom: 60px;
+  }
+
+  .hero .shape-2 {
+    top: 60px;
+    right: -10px;
+  }
+
 }
 
 
@@ -690,7 +717,6 @@ body.active {
     opacity: 0.7;
   }
 
-
 }
 
 
@@ -731,7 +757,6 @@ body.active {
     top: 80px;
     right: -40px;
   }
-
 
 
   /**
