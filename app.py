@@ -4,12 +4,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-
+from config import Configuration
 
 # Setting up the Flask application
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///safespace.db' # Database URI
-app.secret_key = 'my-secret-key'
+app.config.from_object(Configuration) # Database URI
 db = SQLAlchemy(app)      # Initializing the SQLAlchemy database instance
 
 # Setting up the login manager
