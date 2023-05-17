@@ -1,5 +1,5 @@
-python-dotenv
 Flask
+python-dotenv
 Flask-Login
 Flask-SocketIO
 Flask-WTF

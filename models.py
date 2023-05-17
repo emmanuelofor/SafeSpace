@@ -1,5 +1,5 @@
 # Importing the necessary modules
-from app import db
+from database import db
 from flask_login import UserMixin
 
 # Creating the User model class that inherits from UserMixin and db.Model
@@ -20,4 +20,11 @@ class Therapist(db.Model):
     credentials = db.Column(db.String(120), nullable=False)
     image = db.Column(db.String(200), nullable=False)
     
-    
+# Creating the resources model to create a relation for resources
+class Resource(db.Model):
+    # Defining the table columns for the Resources model
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    media_type = db.Column(db.String(80), nullable=False)  
+    category = db.Column(db.String(80), nullable=False)
+    link = db.Column(db.String(200), nullable=False)  

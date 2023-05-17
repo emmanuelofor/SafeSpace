@@ -1,15 +1,18 @@
 # Importing necessary modules
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
 from config import Configuration
+from database import db
 
 # Setting up the Flask application
 app = Flask(__name__)
 app.config.from_object(Configuration) # Database URI
-db = SQLAlchemy(app)      # Initializing the SQLAlchemy database instance
+db.init_app(app)      # Initializing the SQLAlchemy database instance
+
+#Importing the User and Therapist models
+from models import User, Therapist, Resource
 
 # Setting up the login manager
 login_manager = LoginManager(app)
@@ -110,9 +113,13 @@ def therapist2():
     return render_template('therapist2.html', therapists=therapists_list)
 
 
+# Defining routes for resources
+@app.route('/resources', methods=['GET'])
+def resources():
+    resource = Resource.query.with_entities(Resource.name, Resource.link).all()
+    return render_template('resources.html', resource=resource)
 
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
 
     # Insert example therapists
@@ -130,9 +137,8 @@ def create_tables():
         for therapist in example_therapists:
             db.session.add(therapist)
         db.session.commit()
+       
 
-#Importing the User and Therapist models
-from models import User, Therapist
 
 #Running the application with debug mode enabled
 if __name__ == '__main__':
