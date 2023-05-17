@@ -56,13 +56,17 @@
                </div>
 
                <div class="btn-field">
-                  <a href="{{ url_for('homepage')}}">
-                     <button class="btn" type="submit">Sign Up</button>
-                  </a>
+                  <button class="btn" type="submit">Sign Up</button>
                </div>
             </form>
+            
+            {% if message %}
+              <p class="success">{{ message }}</p>
+            {% endif %}
+            
          </div>
       </div>
    </body>
 </html>
+
 

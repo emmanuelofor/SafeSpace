@@ -73,9 +73,9 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-        # Logging in the user and redirecting to the index page
-        login_user(user)
-        return redirect(url_for('index'))
+        # Indicate successful sign-up and prompt to log in
+        return render_template('login.html', message='Sign up successful! Please log in.')
+    
     return render_template('signup.html')
 
 
