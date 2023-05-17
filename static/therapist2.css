@@ -1,12 +1,24 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #f0f8ff;
-  padding: 30px;
+  /* padding: 30px; */
 }
 
-.header h1 {
+/* .header h1 {
   text-align: center;
   font-size: 2.5rem;
+  color: #2C599D;
+  margin-bottom: 20px;
+} */
+
+.therapist-hero {
+  margin-top: 100px;
+  margin-bottom: 70px;
+}
+
+.h1-title {
+  text-align: center;
+  font-size: 3.5rem;
   color: #2C599D;
   margin-bottom: 20px;
 }

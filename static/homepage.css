@@ -641,16 +641,6 @@ body.active {
     border-radius: var(--radius-20);
   }
 
-  .hero .shape-1 {
-    left: 0;
-    bottom: 60px;
-  }
-
-  .hero .shape-2 {
-    top: 60px;
-    right: -10px;
-  }
-
 }
 
 
@@ -735,15 +725,6 @@ body.active {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 30px;
-  }
-
-  .hero .shape-1 {
-    bottom: 30px;
-  }
-
-  .hero .shape-2 {
-    top: 80px;
-    right: -40px;
   }
 
 

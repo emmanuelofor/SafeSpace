@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapists</title>
-	
+    <title>Therapists - SafeSpace</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/safe-favicon.svg') }}" type="image/svg+xml">
@@ -98,160 +97,174 @@
     </header>
 
 
+
+
+
     <main>
         <article>
-            <div class="header">
-                <h1>Therapists</h1>
-            </div>
 
-            <div class="therapist-container">
-                {% for therapist in therapists %}
-                <div class="therapist-card">
-                    <img src="{{ url_for('static', filename=therapist.image) }}" alt="{{ therapist.name }}" />
-                    <h2>{{ therapist.name }}</h2>
-                    <p>{{ therapist.credentials }}</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ywjYgeQYRtwkM8toJzbrLLB6aRpgztSCyzRTIjarxApIVQ/viewform?usp=pp_url" target="_blank">
-                        <button>Book a session now!</button>
-                    </a>
+            <section class="therapist-hero">
+                <div class="container">
+
+                    <div class="hero-content" data-reveal="left">
+                        <h1 class="h1-title">Therapists</h1>
+
+                    </div>
+            
+                    <div class="therapist-container">
+                        {% for therapist in therapists %}
+                        <div class="therapist-card">
+                            <img src="{{ url_for('static', filename=therapist.image) }}" alt="{{ therapist.name }}" />
+                            <h2>{{ therapist.name }}</h2>
+                            <p>{{ therapist.credentials }}</p>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ywjYgeQYRtwkM8toJzbrLLB6aRpgztSCyzRTIjarxApIVQ/viewform?usp=pp_url" target="_blank">
+                                <button>Book a session now!</button>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+            
                 </div>
-                {% endfor %}
-            </div>
+            </section>
+
+
+
 
         </article>
     </main>
 
-
-    <!-- 
-        - #FOOTER
-    -->
+        <!-- 
+            - #FOOTER
+        -->
         
-    <footer class="footer">
-        <div class="container">
-    
-            <div class="section footer-top grid-list">
-    
-                <div class="footer-brand">
-    
-                    <a href="#" class="logo">
-                        <img src="{{ url_for('static', filename='images/logo-footer.svg') }}" width="148" height="38" alt="SafeSpace - Home">
-                    </a>
-    
-                    <h2 class="h2 section-title">Your Online Haven</h2>
-    
-                    <p class="section-text">
-                        SafeSpace - A Mobile and Web Application Helping Young People Navigate Through Emotional Distress.
-                    </p>
-    
+        <footer class="footer">
+            <div class="container">
+        
+                <div class="section footer-top grid-list">
+        
+                    <div class="footer-brand">
+        
+                        <a href="#" class="logo">
+                            <img src="{{ url_for('static', filename='images/logo-footer.svg') }}" width="148" height="38" alt="SafeSpace - Home">
+                        </a>
+        
+                        <h2 class="h2 section-title">Your Online Haven</h2>
+        
+                        <p class="section-text">
+                            SafeSpace - A Mobile and Web Application Helping Young People Navigate Through Emotional Distress.
+                        </p>
+        
+                    </div>
+        
+                    <ul class="footer-list">
+        
+                        <li>
+                            <p class="footer-list-title h5">Menu</p>
+                        </li>
+        
+                        <li>
+                            <a href="#" class="footer-link">
+                                <span class="span">Home</span>
+        
+                                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                            </a>
+                        </li>
+        
+                        <li>
+                            <a href="#" class="footer-link">
+                                <span class="span">About</span>
+        
+                                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                            </a>
+                        </li>
+        
+                        <li>
+                            <a href="#" class="footer-link">
+                                <span class="span">Features</span>
+        
+                                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                            </a>
+                        </li>
+        
+                        <li>
+                            <a href="#" class="footer-link">
+                                <span class="span">Team</span>
+        
+                                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                            </a>
+                        </li>
+        
+                    </ul>
+        
+                    <ul class="footer-list">
+        
+                        <li>
+                            <p class="footer-list-title h5">Contacts</p>
+                        </li>
+        
+                        <li>
+                            <address class="address">
+                                <ion-icon name="location" aria-hidden="true"></ion-icon>
+        
+                                <span class="span">Captain Kia Street, Road 789</span>
+                            </address>
+                        </li>
+        
+                        <li>
+                            <a href="mailto:hello@safespace.app" class="footer-link">
+                                <ion-icon name="mail" aria-hidden="true"></ion-icon>
+        
+                                <span class="span">hello@safespace.app</span>
+                            </a>
+                        </li>
+        
+                        <li>
+                            <a href="tel:+233 245645968" class="footer-link">
+                                <ion-icon name="call" aria-hidden="true"></ion-icon>
+        
+                                <span class="span">+233 245645968</span>
+                            </a>
+                        </li>
+        
+                        <li>
+                            <ul class="social-list">
+        
+                                <li>
+                                    <a href="#" class="social-link">
+                                        <ion-icon name="logo-facebook"></ion-icon>
+                                    </a>
+                                </li>
+        
+                                <li>
+                                    <a href="#" class="social-link">
+                                        <ion-icon name="logo-instagram"></ion-icon>
+                                    </a>
+                                </li>
+        
+                                <li>
+                                    <a href="#" class="social-link">
+                                        <ion-icon name="logo-twitter"></ion-icon>
+                                    </a>
+                                </li>
+        
+                            </ul>
+                        </li>
+        
+                    </ul>
+        
                 </div>
-    
-                <ul class="footer-list">
-    
-                    <li>
-                        <p class="footer-list-title h5">Menu</p>
-                    </li>
-    
-                    <li>
-                        <a href="#" class="footer-link">
-                            <span class="span">Home</span>
-    
-                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="#" class="footer-link">
-                            <span class="span">About</span>
-    
-                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="#" class="footer-link">
-                            <span class="span">Features</span>
-    
-                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="#" class="footer-link">
-                            <span class="span">Team</span>
-    
-                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                        </a>
-                    </li>
-    
-                </ul>
-    
-                <ul class="footer-list">
-    
-                    <li>
-                        <p class="footer-list-title h5">Contacts</p>
-                    </li>
-    
-                    <li>
-                        <address class="address">
-                            <ion-icon name="location" aria-hidden="true"></ion-icon>
-    
-                            <span class="span">Captain Kia Street, Road 789</span>
-                        </address>
-                    </li>
-    
-                    <li>
-                        <a href="mailto:hello@safespace.app" class="footer-link">
-                            <ion-icon name="mail" aria-hidden="true"></ion-icon>
-    
-                            <span class="span">hello@safespace.app</span>
-                        </a>
-                    </li>
-    
-                    <li>
-                        <a href="tel:+233 245645968" class="footer-link">
-                            <ion-icon name="call" aria-hidden="true"></ion-icon>
-    
-                            <span class="span">+233 245645968</span>
-                        </a>
-                    </li>
-    
-                    <li>
-                        <ul class="social-list">
-    
-                            <li>
-                                <a href="#" class="social-link">
-                                    <ion-icon name="logo-facebook"></ion-icon>
-                                </a>
-                            </li>
-    
-                            <li>
-                                <a href="#" class="social-link">
-                                    <ion-icon name="logo-instagram"></ion-icon>
-                                </a>
-                            </li>
-    
-                            <li>
-                                <a href="#" class="social-link">
-                                    <ion-icon name="logo-twitter"></ion-icon>
-                                </a>
-                            </li>
-    
-                        </ul>
-                    </li>
-    
-                </ul>
-    
+        
+                <div class="footer-bottom">
+        
+                    <p class="copyright">
+                        Copyright 2023 Team SafeSpace - Kibo. All rights reserved.
+                    </p>
+        
+                </div>
+        
             </div>
-    
-            <div class="footer-bottom">
-    
-                <p class="copyright">
-                    Copyright 2023 Team SafeSpace - Kibo. All rights reserved.
-                </p>
-    
-            </div>
-    
-        </div>
-    </footer>
+        </footer>
 
 
 
