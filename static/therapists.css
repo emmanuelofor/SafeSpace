@@ -5,25 +5,27 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
+	font-family: "Roboto", sans-serif;
 	color: #333;
 }
 
-.container {
-	max-width: 800px;
-	margin: 0 auto;
+.container-therapy {
+	max-width: 1000px;
+	margin-top: 70px;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 20px;
 	text-align: center;
 }
 
 h1 {
 	font-size: 2.5rem;
-	color: #2C599D;
+	color: #2c599d;
 	margin-bottom: 30px;
 }
 
 p {
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 	line-height: 1.5;
 	margin-bottom: 20px;
 }

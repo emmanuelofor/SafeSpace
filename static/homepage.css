@@ -1,16 +1,4 @@
 /*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
-
-/**
- * copyright 2022 codewithsadee
- */
-
-
-
-
-
-/*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
 
@@ -20,7 +8,7 @@
    * typography
    */
 
-  --ff-poppins: "Poppins", sans-serif;
+  --ff-roboto: "Roboto", sans-serif;
 
   --fs-1: 7rem;
   --fs-2: 4.2rem;
@@ -132,7 +120,7 @@ address {
 }
 
 html {
-  font-family: var(--ff-poppins);
+  font-family: var(--ff-roboto);
   font-size: 10px;
   scroll-behavior: smooth;
 }
