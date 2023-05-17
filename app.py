@@ -60,6 +60,11 @@ def signup():
         if password != confirm_password:
             return render_template('signup.html', error='Passwords do not match')
 
+        # Check if email already exists in the database
+        user = User.query.filter_by(email=email).first()
+        if user:
+            return render_template('signup.html', error='Email already exists')
+
         # Hashing password and creating user instance
         hashed_password = generate_password_hash(password)
         user = User(email=email, password=hashed_password, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth)
