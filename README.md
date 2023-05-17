@@ -13,7 +13,7 @@ People who want to take care of their emotional wellness.
 ### How to run the app locally 
 ```
 clone the repository 
-run "pip install -m requirements.txt
+run "pip install -r requirements.txt"
 run "flask run"
 ```
 
