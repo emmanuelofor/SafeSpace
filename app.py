@@ -34,11 +34,18 @@ def index():
         return render_template('index.html', current_user=current_user)
 
 
+# @app.route('/homepage')
+# @login_required
+# def homepage():
+#     # Render the homepage with user information
+#     return render_template('homepage.html', current_user=current_user)    
+
 @app.route('/homepage')
 @login_required
 def homepage():
     # Render the homepage with user information
-    return render_template('homepage.html', current_user=current_user)    
+    first_name = current_user.first_name
+    return render_template('homepage.html', current_user=current_user, first_name=first_name)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
