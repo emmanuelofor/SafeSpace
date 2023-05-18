@@ -19,3 +19,33 @@
         </div>
     {% endfor %}
 {% endblock %}
+
+
+<!-- Articles -->
+<h2>Articles</h2>
+<ul>
+{% for r in resource %}
+    {% if r.media_type == 'article' %}
+        <li>
+            <h3>{{ r.name }}</h3>
+            <a href="{{ r.link }}" target="_blank">Read More</a>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+<!-- Videos -->
+<h2>Videos</h2>
+<ul>
+{% for r in resource %}
+    {% if r.media_type == 'video' %}
+        <li>
+            <h3>{{ r.name }}</h3>
+            <div>
+                <iframe width="560" height="315" src="{{ r.link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
+
