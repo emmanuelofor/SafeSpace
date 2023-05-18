@@ -1,24 +1,4 @@
-{% extends "layout.html" %}
 
-{% block content %}
-    <h1>Resources</h1>
-    {% for resource in resources %}
-        <div>
-            <h2>{{ resource.name }}</h2>
-            <p>Media Type: {{ resource.media_type }}</p>
-            <p>Category: {{ resource.category }}</p>
-            {% if resource.media_type.lower() == 'video' %}
-                <div>
-                    <iframe width="560" height="315" src="{{ resource.link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            {% elif resource.media_type.lower() == 'article' %}
-                <div>
-                    <a href="{{ resource.link }}">Read Article</a>
-                </div>
-            {% endif %}
-        </div>
-    {% endfor %}
-{% endblock %}
 
 
 <!-- Articles -->
@@ -48,4 +28,43 @@
     {% endif %}
 {% endfor %}
 </ul>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resources</title>
+</head>
+<body>
+    <h1>Resources</h1>
+    
+    <h2>Articles</h2>
+    <ul>
+    {% for res in resource %}
+        {% if res.media_type == 'article' %}
+            <li><a href="{{ res.link }}">{{ res.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <h2>Videos</h2>
+    <ul>
+    {% for res in resource %}
+        {% if res.media_type == 'video' %}
+            <li><a href="{{ res.link }}">{{ res.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+    <h2>Online Courses</h2>
+    <ul>
+    {% for res in resource %}
+        {% if res.media_type == 'course' %}
+            <li><a href="{{ res.link }}">{{ res.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</body>
+</html>
 

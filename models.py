@@ -25,6 +25,6 @@ class Resource(db.Model):
     # Defining the table columns for the Resource model
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    media_type = db.Column(db.String(80), nullable=False)
-    category = db.Column(db.String(80), nullable=False)
     link = db.Column(db.String(200), nullable=False)
+    media_type = db.Column(db.String(80), nullable=False)  # "video", "article", "course"
+    category = db.Column(db.String(80), nullable=False)  # "mental health", etc.

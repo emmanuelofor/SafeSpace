@@ -144,9 +144,38 @@ with app.app_context():
             Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
         ]
 
+
+    # Insert example resources
+    if not Resource.query.first():
+        example_resources = [
+            Resource(
+                name='Understanding Anxiety',
+                link='https://www.healthline.com/health/anxiety',
+                media_type='article',
+                category='mental health'
+            ),
+            Resource(
+                name='How Stress Affects Your Brain',
+                link='https://www.youtube.com/watch?v=WuyPuH9ojCE',
+                media_type='video',
+                category='mental health'
+            ),
+            Resource(
+                name='Introduction to Mental Health',
+                link='https://www.coursera.org/learn/mental-health',
+                media_type='course',
+                category='mental health'
+            )
+        ]    
+
         # Adding the example therapists to the database
         for therapist in example_therapists:
             db.session.add(therapist)
+
+        # Adding the example resources to the database
+        for resource in example_resources:
+            db.session.add(resource)
+
         db.session.commit()
 
 
