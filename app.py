@@ -126,8 +126,8 @@ def therapist2():
 
 @app.route('/resources', methods=['GET'])
 def resources():
-    resources = Resource.query.with_entities(Resource.name, Resource.link, Resource.media_type, Resource.category).all()
-    return render_template('resources.html', resources=resources)
+    resource = Resource.query.with_entities(Resource.name, Resource.link, Resource.media_type, Resource.category).all()
+    return render_template('resources.html', resource=resource)
 
 
 with app.app_context():
