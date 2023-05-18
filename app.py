@@ -161,9 +161,9 @@ with app.app_context():
                 category='mental health'
             ),
             Resource(
-                name='Introduction to Mental Health',
+                name='The Social Context of Mental Health and Illness',
                 link='https://www.coursera.org/learn/mental-health',
-                media_type='course',
+                media_type='Online Course',
                 category='mental health'
             )
         ]    
