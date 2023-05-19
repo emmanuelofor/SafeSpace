@@ -19,9 +19,9 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 # Defining the user loader callback for the login manager
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+#@login_manager.user_loader
+#def load_user(user_id):
+#    return User.query.get(int(user_id))
 
 # Defining routes and associated view functions for the application
 @app.route('/')
@@ -130,53 +130,56 @@ def resources():
     return render_template('resources.html', resource=resource)
 
 
+# Defining the user loader callback for the login manager
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Define example therapists and resources
+example_therapists = [
+    Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
+    Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
+    Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/fred_ola.jpg"),
+    Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg"),
+    Therapist(name="Fred Richards", credentials="LCSW, Therapist", image="images/dr_kwame_obeng.jpg"),
+    Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
+]
+
+example_resources = [
+    Resource(
+        name='Understanding Anxiety',
+        link='https://www.healthline.com/health/anxiety',
+        media_type='article',
+        category='mental health'
+    ),
+    Resource(
+        name='How Stress Affects Your Brain',
+        link='https://www.youtube.com/watch?v=WuyPuH9ojCE',
+        media_type='video',
+        category='mental health'
+    ),
+    Resource(
+        name='The Social Context of Mental Health and Illness',
+        link='https://www.coursera.org/learn/mental-health',
+        media_type='Online Course',
+        category='mental health'
+    )
+]
+
 with app.app_context():
     db.create_all()
 
-    # Insert example therapists
+    # Insert example therapists if none exist yet
     if not Therapist.query.first():
-        example_therapists = [
-            Therapist(name="Dr. Farida Odewale", credentials="MD, Psychiatrist", image="images/dr_godfred_owusu.jpg"),
-            Therapist(name="Dr. Godfred Owusu", credentials="MD, Psychiatrist", image="images/dr_farida_odewale.jpg"),
-            Therapist(name="Dr. Kwame Obeng", credentials="PhD, Psychologist", image="images/fred_ola.jpg"),
-            Therapist(name="Dr. Abena Peprah", credentials="PhD, Psychologist", image="images/dr_abena_peprah.jpg"),
-            Therapist(name="Fred Richards", credentials="LCSW, Therapist", image="images/dr_kwame_obeng.jpg"),
-            Therapist(name="Maame Esiri", credentials="LMFT, Therapist", image="images/maame_esiri.jpg")
-        ]
-
-
-    # Insert example resources
-    if not Resource.query.first():
-        example_resources = [
-            Resource(
-                name='Understanding Anxiety',
-                link='https://www.healthline.com/health/anxiety',
-                media_type='article',
-                category='mental health'
-            ),
-            Resource(
-                name='How Stress Affects Your Brain',
-                link='https://www.youtube.com/watch?v=WuyPuH9ojCE',
-                media_type='video',
-                category='mental health'
-            ),
-            Resource(
-                name='The Social Context of Mental Health and Illness',
-                link='https://www.coursera.org/learn/mental-health',
-                media_type='Online Course',
-                category='mental health'
-            )
-        ]    
-
-        # Adding the example therapists to the database
         for therapist in example_therapists:
             db.session.add(therapist)
 
-        # Adding the example resources to the database
+    # Insert example resources if none exist yet
+    if not Resource.query.first():
         for resource in example_resources:
             db.session.add(resource)
 
-        db.session.commit()
+    db.session.commit()
 
 
 
