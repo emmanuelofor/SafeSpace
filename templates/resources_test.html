@@ -22,7 +22,7 @@
         <li>
             <h3>{{ r.name }}</h3>
             <div>
-                <iframe width="560" height="315" src="{{ r.link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="314" src="{{"https://www.youtube.com/embed/rkZl2gsLUp4" }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </li>
     {% endif %}
@@ -52,7 +52,7 @@
     <ul>
     {% for res in resource %}
         {% if res.media_type == 'video' %}
-            <li><a href="{{ res.link }}">{{ res.name }}</a></li>
+            <li><a href="{{<iframe width="560" height="315" src="https://www.youtube.com/embed/chE00kGtg48" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> }}">{{ 6 ways to cure depression }}</a></li>
         {% endif %}
     {% endfor %}
     </ul>
