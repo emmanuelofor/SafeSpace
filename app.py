@@ -1,5 +1,5 @@
 # Importing necessary modules
-from flask import Flask, render_template, request, redirect, url_for, 
+from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -45,7 +45,7 @@ def index():
 def homepage():
     # Render the homepage with user information and journal entries
     first_name = current_user.first_name
-    journal_entries = current_user.journal_entries.order_by(JournalEntry.created_at.desc()).all()
+    # journal_entries = current_user.journal_entries.order_by(JournalEntry.created_at.desc()).all()
     return render_template('homepage.html', current_user=current_user, first_name=first_name, journal_entries=journal_entries)
 
 @app.route('/journal/create', methods=['POST'])
