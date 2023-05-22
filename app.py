@@ -1,5 +1,5 @@
 # Importing necessary modules
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, 
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -12,7 +12,7 @@ app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
 
 #Importing the User and Therapist models
-from models import User, Therapist, Resource
+from models import User, Therapist, Resource, JournalEntry
 
 # Setting up the login manager
 login_manager = LoginManager(app)
@@ -43,9 +43,24 @@ def index():
 @app.route('/homepage')
 @login_required
 def homepage():
-    # Render the homepage with user information
+    # Render the homepage with user information and journal entries
     first_name = current_user.first_name
-    return render_template('homepage.html', current_user=current_user, first_name=first_name)
+    journal_entries = current_user.journal_entries.order_by(JournalEntry.created_at.desc()).all()
+    return render_template('homepage.html', current_user=current_user, first_name=first_name, journal_entries=journal_entries)
+
+@app.route('/journal/create', methods=['POST'])
+@login_required
+def create_journal_entry():
+    # Handling POST request for creating a new journal entry
+    title = request.form['title']
+    content = request.form['content']
+
+    if not title or not content:
+        return redirect(url_for('homepage'))
+
+    current_user.create_journal_entry(title=title, content=content)
+    return redirect(url_for('homepage'))
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -111,6 +126,8 @@ def logout():
     # Logging out the user and redirecting to the index page
     logout_user()
     return redirect(url_for('index'))
+
+    
 
 @app.route('/therapists')
 def therapists():
