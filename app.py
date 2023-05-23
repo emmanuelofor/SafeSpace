@@ -45,6 +45,7 @@ def index():
 def homepage():
     # Render the homepage with user information and journal entries
     first_name = current_user.first_name
+    # Commented this out because it is not use yet
     # journal_entries = current_user.journal_entries.order_by(JournalEntry.created_at.desc()).all()
     return render_template('homepage.html', current_user=current_user, first_name=first_name, journal_entries=journal_entries)
 
