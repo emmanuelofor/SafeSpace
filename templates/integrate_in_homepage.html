@@ -10,18 +10,28 @@
 
     <main>
         <article>
-            <!-- Other sections -->
+            <!-- Hero section and other sections -->
 
             <!-- Journal entries section -->
             <section class="section journal-entries">
                 <h2 class="h3 section-title">Your Journal Entries</h2>
                 {% for entry in journal_entries %}
                 <div class="journal-entry">
-                    <h3><a href="{{ url_for('journal_entry', entry_id=entry.id) }}">{{ entry.title }}</a></h3>
+                    <h3>{{ entry.title }}</h3>
                     <p>{{ entry.content }}</p>
                     <p class="timestamp">{{ entry.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
                 </div>
                 {% endfor %}
+            </section>
+
+            <!-- Form for creating journal entries -->
+            <section class="section create-journal-entry">
+                <h2 class="h3 section-title">Create a Journal Entry</h2>
+                <form action="{{ url_for('create_journal_entry') }}" method="POST">
+                    <input type="text" name="title" placeholder="Title" required>
+                    <textarea name="content" placeholder="Content" required></textarea>
+                    <button type="submit">Add Entry</button>
+                </form>
             </section>
         </article>
     </main>
@@ -33,4 +43,3 @@
 </body>
 
 </html>
-
