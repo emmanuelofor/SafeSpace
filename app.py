@@ -55,7 +55,7 @@ def journal():
     journal_entries = current_user.journal_entries
 
     # Render the journal listing page with the journal entries
-    return render_template('journal.html', journal_entries=journal_entries)
+    return render_template('journal_test.html', journal_entries=journal_entries)
 
 @app.route('/journal/entry/<int:entry_id>')
 @login_required
