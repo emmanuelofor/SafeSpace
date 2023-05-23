@@ -52,4 +52,7 @@ class JournalEntry(db.Model):
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<JournalEntry id={self.id}, title='{self.title}'>"
     

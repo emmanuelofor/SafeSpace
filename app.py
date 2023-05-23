@@ -43,24 +43,28 @@ def index():
 @app.route('/homepage')
 @login_required
 def homepage():
-    # Render the homepage with user information and journal entries
+    # Render the homepage with user information 
     first_name = current_user.first_name
-    # Commented this out because it is not use yet
-    # journal_entries = current_user.journal_entries.order_by(JournalEntry.created_at.desc()).all()
-    return render_template('homepage.html', current_user=current_user, first_name=first_name, journal_entries=journal_entries)
+    return render_template('homepage.html', current_user=current_user, first_name=first_name)
 
-@app.route('/journal/create', methods=['POST'])
+
+@app.route('/journal')
 @login_required
-def create_journal_entry():
-    # Handling POST request for creating a new journal entry
-    title = request.form['title']
-    content = request.form['content']
+def journal():
+    # Fetch journal entries for the logged-in user from the database
+    journal_entries = current_user.journal_entries
 
-    if not title or not content:
-        return redirect(url_for('homepage'))
+    # Render the journal listing page with the journal entries
+    return render_template('journal.html', journal_entries=journal_entries)
 
-    current_user.create_journal_entry(title=title, content=content)
-    return redirect(url_for('homepage'))
+@app.route('/journal/entry/<int:entry_id>')
+@login_required
+def journal_entry(entry_id):
+    # Fetch the specific journal entry from the database
+    journal_entry = JournalEntry.query.get(entry_id)
+
+    # Render the journal entry page with the journal entry details
+    return render_template('journal_entry.html', journal_entry=journal_entry)
 
 
 
