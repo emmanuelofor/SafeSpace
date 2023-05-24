@@ -7,12 +7,12 @@ descTag = popupBox.querySelector("textarea"),
 addBtn = popupBox.querySelector("button");
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const notes = JSON.parse(localStorage.getItem("notes") || "[]");
+const journals = JSON.parse(localStorage.getItem("journals") || "[]");
 let isUpdate = false, updateId;
 
 addBox.addEventListener("click", () => {
-    popupTitle.innerText = "Add a new Note";
-    addBtn.innerText = "Add Note";
+    popupTitle.innerText = "Add a new journal";
+    addBtn.innerText = "Add journal";
     popupBox.classList.add("show");
     document.querySelector("body").style.overflow = "hidden";
     if(window.innerWidth > 660) titleTag.focus();
@@ -25,23 +25,23 @@ closeIcon.addEventListener("click", () => {
     document.querySelector("body").style.overflow = "auto";
 });
 
-function showNotes() {
-    if(!notes) return;
-    document.querySelectorAll(".note").forEach(li => li.remove());
-    notes.forEach((note, id) => {
-        let filterDesc = note.description.replaceAll("\n", '<br/>');
-        let liTag = `<li class="note">
+function showjournals() {
+    if(!journals) return;
+    document.querySelectorAll(".journal").forEach(li => li.remove());
+    journals.forEach((journal, id) => {
+        let filterDesc = journal.description.replaceAll("\n", '<br/>');
+        let liTag = `<li class="journal">
                         <div class="details">
-                            <p>${note.title}</p>
+                            <p>${journal.title}</p>
                             <span>${filterDesc}</span>
                         </div>
                         <div class="bottom-content">
-                            <span>${note.date}</span>
+                            <span>${journal.date}</span>
                             <div class="settings">
                                 <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
                                 <ul class="menu">
-                                    <li onclick="updateNote(${id}, '${note.title}', '${filterDesc}')"><i class="uil uil-pen"></i>Edit</li>
-                                    <li onclick="deleteNote(${id})"><i class="uil uil-trash"></i>Delete</li>
+                                    <li onclick="updatejournal(${id}, '${journal.title}', '${filterDesc}')"><i class="uil uil-pen"></i>Edit</li>
+                                    <li onclick="deletejournal(${id})"><i class="uil uil-trash"></i>Delete</li>
                                 </ul>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ function showNotes() {
         addBox.insertAdjacentHTML("afterend", liTag);
     });
 }
-showNotes();
+showjournals();
 
 function showMenu(elem) {
     elem.parentElement.classList.add("show");
@@ -60,23 +60,23 @@ function showMenu(elem) {
     });
 }
 
-function deleteNote(noteId) {
-    let confirmDel = confirm("Are you sure you want to delete this note?");
+function deletejournal(journalId) {
+    let confirmDel = confirm("Are you sure you want to delete this journal?");
     if(!confirmDel) return;
-    notes.splice(noteId, 1);
-    localStorage.setItem("notes", JSON.stringify(notes));
-    showNotes();
+    journals.splice(journalId, 1);
+    localStorage.setItem("journals", JSON.stringify(journals));
+    showjournals();
 }
 
-function updateNote(noteId, title, filterDesc) {
+function updatejournal(journalId, title, filterDesc) {
     let description = filterDesc.replaceAll('<br/>', '\r\n');
-    updateId = noteId;
+    updateId = journalId;
     isUpdate = true;
     addBox.click();
     titleTag.value = title;
     descTag.value = description;
-    popupTitle.innerText = "Update a Note";
-    addBtn.innerText = "Update Note";
+    popupTitle.innerText = "Update a journal";
+    addBtn.innerText = "Update journal";
 }
 
 addBtn.addEventListener("click", e => {
@@ -90,15 +90,15 @@ addBtn.addEventListener("click", e => {
         day = currentDate.getDate(),
         year = currentDate.getFullYear();
 
-        let noteInfo = {title, description, date: `${month} ${day}, ${year}`}
+        let journalInfo = {title, description, date: `${month} ${day}, ${year}`}
         if(!isUpdate) {
-            notes.push(noteInfo);
+            journals.push(journalInfo);
         } else {
             isUpdate = false;
-            notes[updateId] = noteInfo;
+            journals[updateId] = journalInfo;
         }
-        localStorage.setItem("notes", JSON.stringify(notes));
-        showNotes();
+        localStorage.setItem("journals", JSON.stringify(journals));
+        showjournals();
         closeIcon.click();
     }
 });

@@ -48,6 +48,13 @@ def homepage():
     return render_template('homepage.html', current_user=current_user, first_name=first_name)
 
 
+# I am adding this route to test for the journal page
+@app.route('/journal-test')
+@login_required
+def journal_test():
+    return render_template('journal_test.html')
+
+
 @app.route('/journal')
 @login_required
 def journal():
@@ -55,7 +62,7 @@ def journal():
     journal_entries = current_user.journal_entries
 
     # Render the journal listing page with the journal entries
-    return render_template('journal_test.html', journal_entries=journal_entries)
+    return render_template('journal.html', journal_entries=journal_entries)
 
 @app.route('/journal/entry/<int:entry_id>')
 @login_required
