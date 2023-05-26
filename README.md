@@ -16,4 +16,5 @@ clone the repository
 run "pip install -r requirements.txt"
 run "flask run"
 ```
+python -m flask run
 
