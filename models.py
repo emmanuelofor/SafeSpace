@@ -2,8 +2,6 @@
 from database import db
 from flask_login import UserMixin
 from datetime import datetime
-from models import User, Therapist, Resource, JournalEntry
-
 
 # Creating the User model class that inherits from UserMixin and db.Model
 class User(UserMixin, db.Model):

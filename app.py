@@ -6,19 +6,22 @@ from datetime import datetime
 from config import Configuration
 from database import db
 
-
 # Setting up the Flask application
 app = Flask(__name__)
 app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
 
-
-# Importing the User and Therapist models
+#Importing the User and Therapist models
 from models import User, Therapist, Resource, JournalEntry
+
 # Setting up the login manager
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
+# Defining the user loader callback for the login manager
+#@login_manager.user_loader
+#def load_user(user_id):
+#    return User.query.get(int(user_id))
 
 # Defining routes and associated view functions for the application
 @app.route('/')
@@ -26,19 +29,26 @@ def index():
     # If the user is authenticated, render the homepage with user information
     if current_user.is_authenticated:
         return render_template('homepage.html', current_user=current_user)
-    # If not authenticated, render the index page
+    # If not authenticated, render the index page    
     else:
         return render_template('index.html', current_user=current_user)
 
 
+# @app.route('/homepage')
+# @login_required
+# def homepage():
+#     # Render the homepage with user information
+#     return render_template('homepage.html', current_user=current_user)    
+
 @app.route('/homepage')
 @login_required
 def homepage():
-    # Render the homepage with user information
+    # Render the homepage with user information 
     first_name = current_user.first_name
     return render_template('homepage.html', current_user=current_user, first_name=first_name)
 
 
+# I am adding this route to test for the journal page
 @app.route('/journal-test')
 @login_required
 def journal_test():
@@ -54,7 +64,6 @@ def journal():
     # Render the journal listing page with the journal entries
     return render_template('journal.html', journal_entries=journal_entries)
 
-
 @app.route('/journal/entry/<int:entry_id>')
 @login_required
 def journal_entry(entry_id):
@@ -62,30 +71,8 @@ def journal_entry(entry_id):
     journal_entry = JournalEntry.query.get(entry_id)
 
     # Render the journal entry page with the journal entry details
-    return render_template('journal_test.html', journal_entry=journal_entry)
+    return render_template('journal_entry.html', journal_entry=journal_entry)
 
-
-@app.route('/journal/add', methods=['POST'])
-@login_required
-def add_journal():
-    # Extract journal input from the form
-    title = request.form['journal_title']
-    description = request.form['journal_description']
-
-    # Create a new journal entry instance
-    journal_entry = JournalEntry(
-        title=title,
-        content=description,
-        created_at=datetime.now(),
-        user_id=current_user.id
-    )
-
-    # Add the journal entry to the database
-    db.session.add(journal_entry)
-    db.session.commit()
-
-    # Redirect to the journal page after adding the entry
-    return redirect(url_for('journal'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -114,13 +101,7 @@ def signup():
 
         # Hashing password and creating user instance
         hashed_password = generate_password_hash(password)
-        user = User(
-            email=email,
-            password=hashed_password,
-            first_name=first_name,
-            last_name=last_name,
-            date_of_birth=date_of_birth
-        )
+        user = User(email=email, password=hashed_password, first_name=first_name, last_name=last_name, date_of_birth=date_of_birth)
 
         # Adding user to the database
         db.session.add(user)
@@ -128,7 +109,7 @@ def signup():
 
         # Indicate successful sign-up and prompt to log in
         return render_template('login.html', message='Sign up successful! Please log in.')
-
+    
     return render_template('signup.html')
 
 
@@ -149,9 +130,7 @@ def login():
             return redirect(url_for('homepage'))  # Redirects to the homepage
         else:
             return render_template('login.html', error='Invalid email or password')
-
     return render_template('login.html')
-
 
 @app.route('/logout')
 @login_required
@@ -160,12 +139,12 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+    
 
 @app.route('/therapists')
 def therapists():
     # Render the therapists page
     return render_template('therapists.html')
-
 
 @app.route('/therapist2')
 def therapist2():
@@ -173,7 +152,6 @@ def therapist2():
     therapists_list = Therapist.query.all()
     # Rendering the therapist2 page with the therapists list
     return render_template('therapist2.html', therapists=therapists_list)
-
 
 @app.route('/resources', methods=['GET'])
 def resources():
@@ -185,7 +163,6 @@ def resources():
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 
 # Define example therapists and resources
 example_therapists = [
@@ -234,8 +211,10 @@ with app.app_context():
     db.session.commit()
 
 
-# Running the application with debug mode enabled
+
+#Running the application with debug mode enabled
 if __name__ == '__main__':
+    db.create_all()
     app.run(debug=True)
 
 
