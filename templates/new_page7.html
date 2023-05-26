@@ -11,8 +11,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/safe-favicon.svg') }}" type="image/svg+xml">
 
     <!-- custom css link -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='journal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='journal_style.css') }}">
 
     <!-- Iconscout Link For Icons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -86,7 +85,6 @@
 
             <div class="header-action">
 
-
                 <a href="{{ url_for('logout') }}" class="btn btn-primary has-after">Log Out</a>
             </div>
 
@@ -99,11 +97,13 @@
         </div>
     </header>
 
+    <!-- 
+        - # JOURNAL
+    -->
+
     <main>
-        <article>
-            <!-- 
-                - # JOURNAL
-            -->
+        <div class="container journal">
+            
 
             <div class="popup-box">
                 <div class="popup">
@@ -139,8 +139,11 @@
                     <p>Add New Journal</p>
                 </li>
             </div>
-        </article>
+    
+        </div>
     </main>
+
+
 
     <!-- 
         - #FOOTER

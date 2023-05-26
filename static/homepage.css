@@ -257,19 +257,6 @@ body.active {
   color: #2c599d;
 }
 
-.btn-secondary {
-  background-color: hsl(0, 0%, 100%);
-  color: #2c599d;
-}
-
-.btn-secondary::after {
-  background-color: #2c599d;
-}
-
-.btn-secondary:is(:hover, :focus-visible) {
-  color: hsl(0, 0%, 100%);
-}
-
 .w-100 {
   width: 100%;
 }
