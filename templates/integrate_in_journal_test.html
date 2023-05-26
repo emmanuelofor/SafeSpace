@@ -1,0 +1,200 @@
+-- Add this part to your journal.html file after the <div class="wrapper"> line and before the <li class="add-box">:
+
+    {% for entry in journal_entries %}
+    <div class="entry">
+        <h2><a href="{{ url_for('journal_entry', entry_id=entry.id) }}">{{ entry.title }}</a></h2>
+        <p>{{ entry.content[:100] }}{% if entry.content|length > 100 %}...{% endif %}</p>
+        <p>Created at: {{ entry.created_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+        <a href="{{ url_for('edit_journal_entry', entry_id=entry.id) }}">Edit</a>
+        <form action="{{ url_for('delete_journal_entry', entry_id=entry.id) }}" method="post">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+{% endfor %}
+
+-- Add New Journal" button should link to the route for creating a new journal entry.
+<li class="add-box">
+    <a href="{{ url_for('new_journal_entry') }}">
+        <div class="icon">
+            <i class="uil uil-plus"></i>
+        </div>
+    </a>
+    <p>Add New Journal</p>
+</li>
+
+
+-- implementation of pop-up function
+update the "Add New Journal" button code to include an onclick event handler:
+<li class="add-box" onclick="openForm()">
+    <div class="icon">
+        <i class="uil uil-plus"></i>
+    </div>
+    <p>Add New Journal</p>
+</li>
+
+- and include the form HTML code 
+<div class="form-popup" id="myForm">
+    <form action="{{ url_for('new_journal_entry') }}" class="form-container" method="post">
+        <h1>New Journal Entry</h1>
+
+        <label for="title"><b>Title</b></label>
+        <input type="text" placeholder="Enter Title" name="title" required>
+
+        <label for="content"><b>Content</b></label>
+        <textarea placeholder="Enter Content" name="content" required></textarea>
+
+        <button type="submit" class="btn">Save</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div>
+
+-- CSS styles for the form. Include these in your journal_style.css file:
+/* The Modal (background) */
+.form-popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.form-container {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.btn {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+-- journal.js 
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
+// The array of journals.
+let journals = [];
+
+// The index of the journal currently being edited.
+let editingIndex = -1;
+
+// Function to edit a journal entry.
+function editJournal(index) {
+    // Retrieve the journal entry.
+    const journal = journals[index];
+    
+    // Populate the form with the journal data.
+    const form = document.getElementById('myForm');
+    form.elements['title'].value = journal.title;
+    form.elements['description'].value = journal.description;
+    
+    // Open the form.
+    openForm();
+
+    // Set the editing index to the current index.
+    editingIndex = index;
+}
+
+// Function to delete a journal entry.
+function deleteJournal(index) {
+    // Remove the journal entry from the array.
+    journals.splice(index, 1);
+    
+    // Update the displayed journal entries.
+    displayJournals();
+}
+
+// Function to save a journal entry.
+function saveJournal() {
+    // Get the form data.
+    const form = document.getElementById('myForm');
+    const title = form.elements['title'].value;
+    const description = form.elements['description'].value;
+    
+    // Check if we're editing an existing entry or creating a new one.
+    if(editingIndex === -1) {
+        // Add a new journal entry to the array.
+        journals.push({title, description});
+    } else {
+        // Update the existing journal entry.
+        journals[editingIndex] = {title, description};
+        
+        // Reset the editing index.
+        editingIndex = -1;
+    }
+
+    // Clear the form.
+    form.reset();
+    
+    // Close the form.
+    closeForm();
+
+    // Update the displayed journal entries.
+    displayJournals();
+}
+
+// Function to display the journal entries.
+function displayJournals() {
+    // Your code here to display the journal entries on the page.
+    // For example, you could create an HTML list and insert it into the page.
+}
+
+// Attach the saveJournal function to your form's submit event.
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    // Prevent the form from submitting normally.
+    event.preventDefault();
+    
+    // Save the journal.
+    saveJournal();
+});
+
+// Inside your displayJournals function...
+const editButton = document.createElement('button');
+editButton.textContent = 'Edit';
+editButton.addEventListener('click', function() {
+    editJournal(index);
+});
+
+const deleteButton = document.createElement('button');
+deleteButton.textContent = 'Delete';
+deleteButton.addEventListener('click', function() {
+    deleteJournal(index);
+});
+
+// Add the buttons to your journal entry element.
+journalEntryElement.appendChild(editButton);
+journalEntryElement.appendChild(deleteButton);
+
+
+-- update your form's HTML to include a name attribute for each field
+<form id="myForm">
+    <input type="text" name="title" placeholder="Title">
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Save</button>
+</form>
+

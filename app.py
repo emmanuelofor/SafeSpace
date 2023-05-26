@@ -73,6 +73,78 @@ def journal_entry(entry_id):
     # Render the journal entry page with the journal entry details
     return render_template('journal_entry.html', journal_entry=journal_entry)
 
+@app.route('/journal/new', methods=['GET', 'POST'])
+@login_required
+def new_journal_entry():
+    # Handling POST request for creating a new journal entry
+    if request.method == 'POST':
+        # Extracting journal entry input from the form
+        title = request.form['title']
+        content = request.form['content']
+
+        # Validating input and rendering error messages if necessary
+        if not title or not content:
+            return render_template('new_journal_entry.html', error='All fields are required.')
+
+        # Create a new journal entry and associate it with the current user
+        journal_entry = current_user.create_journal_entry(title, content)
+
+        # Indicate successful creation and redirect to the journal entry details page
+        return redirect(url_for('journal_entry', entry_id=journal_entry.id))
+    
+    # If it's a GET request, render the new journal entry page
+    return render_template('new_journal_entry.html')
+
+@app.route('/journal/entry/<int:entry_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_journal_entry(entry_id):
+    # Fetch the specific journal entry from the database
+    journal_entry = JournalEntry.query.get(entry_id)
+
+    # Check if the current user is the owner of the journal entry
+    if journal_entry.user != current_user:
+        abort(403)  # Forbidden
+
+    # Handle POST request for editing a journal entry
+    if request.method == 'POST':
+        # Extract new journal entry input from the form
+        title = request.form['title']
+        content = request.form['content']
+
+        # Validate input and render error messages if necessary
+        if not title or not content:
+            return render_template('edit_journal_entry.html', error='All fields are required.', journal_entry=journal_entry)
+
+        # Update the journal entry and commit the changes to the database
+        journal_entry.title = title
+        journal_entry.content = content
+        db.session.commit()
+
+        # Indicate successful edit and redirect to the journal entry details page
+        return redirect(url_for('journal_entry', entry_id=journal_entry.id))
+
+    # If it's a GET request, render the journal entry edit page
+    return render_template('edit_journal_entry.html', journal_entry=journal_entry)
+
+@app.route('/journal/entry/<int:entry_id>/delete', methods=['POST'])
+@login_required
+def delete_journal_entry(entry_id):
+    # Fetch the specific journal entry from the database
+    journal_entry = JournalEntry.query.get(entry_id)
+
+    # Check if the current user is the owner of the journal entry
+    if journal_entry.user != current_user:
+        abort(403)  # Forbidden
+
+    # Delete the journal entry and commit the changes to the database
+    db.session.delete(journal_entry)
+    db.session.commit()
+
+    # Indicate successful deletion and redirect to the journal entries list page
+    return redirect(url_for('journal'))
+
+
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
