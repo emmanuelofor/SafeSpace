@@ -12,7 +12,7 @@ app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
 
 #Importing the User and Therapist models
-from models import User, Therapist, Resource
+from models import User, Therapist, Resource, JournalEntry
 
 # Setting up the login manager
 login_manager = LoginManager(app)
@@ -43,9 +43,36 @@ def index():
 @app.route('/homepage')
 @login_required
 def homepage():
-    # Render the homepage with user information
+    # Render the homepage with user information 
     first_name = current_user.first_name
     return render_template('homepage.html', current_user=current_user, first_name=first_name)
+
+
+# I am adding this route to test for the journal page
+@app.route('/journal-test')
+@login_required
+def journal_test():
+    return render_template('journal_test.html')
+
+
+@app.route('/journal')
+@login_required
+def journal():
+    # Fetch journal entries for the logged-in user from the database
+    journal_entries = current_user.journal_entries
+
+    # Render the journal listing page with the journal entries
+    return render_template('journal.html', journal_entries=journal_entries)
+
+@app.route('/journal/entry/<int:entry_id>')
+@login_required
+def journal_entry(entry_id):
+    # Fetch the specific journal entry from the database
+    journal_entry = JournalEntry.query.get(entry_id)
+
+    # Render the journal entry page with the journal entry details
+    return render_template('journal_entry.html', journal_entry=journal_entry)
+
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -111,6 +138,8 @@ def logout():
     # Logging out the user and redirecting to the index page
     logout_user()
     return redirect(url_for('index'))
+
+    
 
 @app.route('/therapists')
 def therapists():
