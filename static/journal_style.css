@@ -406,9 +406,9 @@ main {
     min-height: 100vh; */
 }
 
-/* .container .journal {
-    margin-top: 10px;
-} */
+article {
+    margin-top: 100px;
+}
 
 ::selection {
     color: #fff;
@@ -417,6 +417,7 @@ main {
 
 .wrapper {
     margin: 50px;
+    padding-top: 40px;
     display: grid;
     gap: 25px;
     grid-template-columns: repeat(auto-fill, 265px);
