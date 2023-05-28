@@ -11,8 +11,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/safe-favicon.svg') }}" type="image/svg+xml">
 
     <!-- custom css link -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='journal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='journal_style.css') }}">
 
     <!-- Iconscout Link For Icons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -86,7 +85,6 @@
 
             <div class="header-action">
 
-
                 <a href="{{ url_for('logout') }}" class="btn btn-primary has-after">Log Out</a>
             </div>
 
@@ -99,11 +97,13 @@
         </div>
     </header>
 
+    <!-- 
+        - # JOURNAL
+    -->
+
     <main>
-        <div class="container journal"> 
-            <!-- 
-                - # JOURNAL
-            -->
+        <div class="container journal">
+            
 
             <div class="popup-box">
                 <div class="popup">
@@ -131,23 +131,19 @@
             </div>
 
             <div class="wrapper">
-                {% for entry in journal_entries %}
-                <div class="journal-entry">
-                    <h3><a href="{{ url_for('journal_entry', entry_id=entry.id) }}">{{ entry.title }}</a></h3>
-                    <p>{{ entry.content }}</p>
-                    <p class="timestamp">{{ entry.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-                </div>
-                {% endfor %}
                 <li class="add-box">
                     <div class="icon">
                         <i class="uil uil-plus"></i>
                     </div>
+
                     <p>Add New Journal</p>
                 </li>
             </div>
-
+    
         </div>
     </main>
+
+
 
     <!-- 
         - #FOOTER
@@ -283,9 +279,10 @@
 
 
 
+
     <!-- custom js link -->
     <script src="{{ url_for('static', filename='landing_page.js') }}"></script>
-    <script src="{{ url_for('static', filename='journal_test.js') }}"></script>
+    <script src="{{ url_for('static', filename='journal.js') }}"></script>
 
     <!-- 
     - ionicon link
