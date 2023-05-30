@@ -32,13 +32,7 @@ def index():
     # If not authenticated, render the index page    
     else:
         return render_template('index.html', current_user=current_user)
-
-
-# @app.route('/homepage')
-# @login_required
-# def homepage():
-#     # Render the homepage with user information
-#     return render_template('homepage.html', current_user=current_user)    
+    
 
 @app.route('/homepage')
 @login_required
@@ -46,13 +40,6 @@ def homepage():
     # Render the homepage with user information 
     first_name = current_user.first_name
     return render_template('homepage.html', current_user=current_user, first_name=first_name)
-
-
-# I am adding this route to test for the journal page
-# @app.route('/journal-test')
-# @login_required
-# def journal_test():
-#     return render_template('journal_test.html')
 
 
 @app.route('/journal')
@@ -142,8 +129,6 @@ def delete_journal_entry(entry_id):
 
     # Indicate successful deletion and redirect to the journal entries list page
     return redirect(url_for('journal'))
-
-
 
 
 
