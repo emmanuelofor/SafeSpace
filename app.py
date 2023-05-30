@@ -49,10 +49,10 @@ def homepage():
 
 
 # I am adding this route to test for the journal page
-@app.route('/journal-test')
-@login_required
-def journal_test():
-    return render_template('journal_test.html')
+# @app.route('/journal-test')
+# @login_required
+# def journal_test():
+#     return render_template('journal_test.html')
 
 
 @app.route('/journal')
