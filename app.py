@@ -196,6 +196,15 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/team')
+def team():
+    return render_template('about_team.htm')
+
+
     
 
 @app.route('/therapists')
