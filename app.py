@@ -230,6 +230,10 @@ def resources():
     resource = Resource.query.with_entities(Resource.name, Resource.link, Resource.media_type, Resource.category).all()
     return render_template('resources.html', resource=resource)
 
+# Defining routes for about team page
+@app.route('/about_team', methods=['GET'])
+def about_team():
+    return render_template('about_team.html')
 
 # Defining the user loader callback for the login manager
 @login_manager.user_loader

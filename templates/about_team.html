@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeSpace - About team</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/safe-favicon.svg') }}" type="image/svg+xml">
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='resources.css') }}">
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!--
+    - #PRELOADER
+    -->
+
+    <div class="loading-container" data-loading-container>
+        <div class="loading-circle"></div>
+    </div>
+
+
+    <!--
+    - #HEADER
+    -->
+    
+    <header class="header" data-header>
+        <div class="container">
+
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" width="148" height="38" alt="SafeSpace Logo">
+            </a>
+
+            <nav class="navbar" data-navbar>
+                <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+
+                <a href="#" class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" width="148" height="38" alt="SafeSpace Logo">
+                </a>
+
+                <ul class="navbar-list">
+
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link" data-nav-link>Home</a>
+                    </li>
+
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link" data-nav-link>About</a>
+                    </li>
+
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link" data-nav-link>Features</a>
+                    </li>
+
+                    <li class="navbar-item">
+                        <a href="#" class="navbar-link" data-nav-link>Team</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="header-action">
+
+
+                <a href="{{ url_for('logout') }}" class="btn btn-primary has-after">Log Out</a>
+            </div>
+
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+            </button>
+
+            <div class="overlay" data-overlay data-nav-toggler></div>
+
+
+        </div>
+    </header>
+
+    <main>
+        <article>
+
+            <!--
+                - #ABOUT TEAM
+            -->
+
+            <section class="section resources" aria-labelledby="resources-label">
+                <div class="container">
+
+                    <h2 class="section-title headline-md text-center" id="resources-label">Meet the Team</h2>
+
+                    <ul class="resources-list">
+
+                        <li>
+                            <div class="resources-card">
+
+                                <div class="card-banner img-holder" style="--width: 800; --height: 540;">
+                                    <img src="{{ url_for('static', filename='images/faridat.jpg')}}" width="800" height="540" loading="lazy" 
+                                    alt="Faridat Ibidun" class="img-cover">
+
+                                    <a href="https://github.com/Rida-code" target="#" class="btn-icon"
+                                        aria-label="Faridat Ibidun">
+                                        <icon-icon name="arrow-forward-sharp" aria-hidden="true"></icon-icon>
+                                    </a>
+                                </div>
+
+                                <div class="card-content">
+
+                                    <span class="chip label-md">Product Owner</span>
+
+                                    <h3 class="title-md">Faridat Ibidun</h3>
+
+                                    <p class="card-text">
+                                        Faridat is an a registered nurse and an avid product manager. She has experience advocating for sustainability
+                                        and making positive impact. With invaluable experience in clinical pyschiatry, she champoining a movement for mental health wellness 
+                                        with the aid of technology. 
+                                    </p>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="resources-card">
+
+                                <div class="card-banner img-holder" style="--width: 800; --height: 540;">
+                                    <img src="{{url_for('static', filename='images/emmanuel.jfif')}}" width="800" height="540" loading="lazy" 
+                                    alt="emmauel" class="img-cover">
+
+                                    <a href="https://github.com/emmanuelofor" target="#" class="btn-icon" arial-label="emmanuel">
+                                        <ion-icon name="arrow-forward-sharp" aria-hidden="true"></ion-icon>
+                                    </a>
+                                </div>
+
+                                <div class="card-content">
+
+                                    <span class="chip label-md">Developer</span>
+            
+                                    <h3 class="title-md">Emmanuel Ofori</h3>
+            
+                                    <p class="card-text">
+                                        Emmanuel is a medical professional passionate about technology. With a strong medical background, Emmanuel is pioneering the mental wellness movement with technology.
+                                    </p>
+            
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="resources-card">
+            
+                                <div class="card-banner img-holder" style="--width: 800; --height: 540;">
+                                    <img src="{{ url_for('static', filename='images/godfred.jpg') }}" width="800" height="540" loading="lazy"
+                                        alt="godfred" class="img-cover">
+            
+                                    <a href="https://github.com/thegoddysmart" target="#" class="btn-icon"
+                                        aria-label="Godfred Awudi">
+                                        <ion-icon name="arrow-forward-sharp" aria-hidden="true"></ion-icon>
+                                    </a>
+                                </div>
+            
+                                <div class="card-content">
+            
+                                    <span class="chip label-md">Designer and Developer</span>
+            
+                                    <h3 class="title-md">Godfred Awudi</h3>
+            
+                                    <p class="card-text">
+                                        Godfred is a talented designer and software developer. He is wide porfolio of design and frontend projects. Alongside his technical passion, Godfred is strong advocate for mental well-being and inclusion for everyone.
+                                    </p>
+                                </div>
+            
+                            </div>    
+                        </li>
+
+                        <li>
+                            <div class="resources-card">
+            
+                                <div class="card-banner img-holder" style="--width: 800; --height: 540;">
+                                    <img src="{{ url_for('static', filename='images/femisire.jpg') }}" width="800" height="540" loading="lazy"
+                                        alt="femisire" class="img-cover">
+            
+                                    <a href="https://github.com/Oluwafemisire" target="#" class="btn-icon"
+                                        aria-label="Oluwafemisire Ojuawo">
+                                        <ion-icon name="arrow-forward-sharp" aria-hidden="true"></ion-icon>
+                                    </a>
+                                </div>
+            
+                                <div class="card-content">
+            
+                                    <span class="chip label-md">Developer</span>
+            
+                                    <h3 class="title-md">Oluwafemisire Ojuawo</h3>
+            
+                                    <p class="card-text">
+                                        Oluwafemisire is a passionate developer who wants to make the world a more comfortable place. He leverages technology to aid the lifestyle of people and their everyday tasks.
+                                    </p>
+                                </div>
+            
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!--
+        - # FOOTER
+    -->
+    <footer class="footer">
+        <div class="container">
+    
+            <div class="section footer-top grid-list">
+    
+                <div class="footer-brand">
+    
+                    <a href="#" class="logo">
+                        <img src="{{ url_for('static', filename='images/logo-footer.svg') }}" width="148" height="38" alt="SafeSpace - Home">
+                    </a>
+    
+                    <h2 class="h2 section-title">Your Online Haven</h2>
+    
+                    <p class="section-text">
+                        SafeSpace - A Mobile and Web Application Helping Young People Navigate Through Emotional Distress.
+                    </p>
+    
+                </div>
+    
+                <ul class="footer-list">
+    
+                    <li>
+                        <p class="footer-list-title h5">Menu</p>
+                    </li>
+    
+                    <li>
+                        <a href="#" class="footer-link">
+                            <span class="span">Home</span>
+    
+                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a href="#" class="footer-link">
+                            <span class="span">About</span>
+    
+                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a href="#" class="footer-link">
+                            <span class="span">Features</span>
+    
+                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a href="#" class="footer-link">
+                            <span class="span">Team</span>
+    
+                            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                        </a>
+                    </li>
+    
+                </ul>
+    
+                <ul class="footer-list">
+    
+                    <li>
+                        <p class="footer-list-title h5">Contacts</p>
+                    </li>
+    
+                    <li>
+                        <address class="address">
+                            <ion-icon name="location" aria-hidden="true"></ion-icon>
+    
+                            <span class="span">Captain Kia Street, Road 789</span>
+                        </address>
+                    </li>
+    
+                    <li>
+                        <a href="mailto:hello@safespace.app" class="footer-link">
+                            <ion-icon name="mail" aria-hidden="true"></ion-icon>
+    
+                            <span class="span">hello@safespace.app</span>
+                        </a>
+                    </li>
+    
+                    <li>
+                        <a href="tel:+233 245645968" class="footer-link">
+                            <ion-icon name="call" aria-hidden="true"></ion-icon>
+    
+                            <span class="span">+233 245645968</span>
+                        </a>
+                    </li>
+    
+                    <li>
+                        <ul class="social-list">
+    
+                            <li>
+                                <a href="#" class="social-link">
+                                    <ion-icon name="logo-facebook"></ion-icon>
+                                </a>
+                            </li>
+    
+                            <li>
+                                <a href="#" class="social-link">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                            </li>
+    
+                            <li>
+                                <a href="#" class="social-link">
+                                    <ion-icon name="logo-twitter"></ion-icon>
+                                </a>
+                            </li>
+    
+                        </ul>
+                    </li>
+    
+                </ul>
+    
+            </div>
+    
+            <div class="footer-bottom">
+    
+                <p class="copyright">
+                    Copyright 2023 Team SafeSpace - Kibo. All rights reserved.
+                </p>
+    
+            </div>
+    
+        </div>
+    </footer>
+
+    <!-- custom js link -->
+    <script src="{{ url_for('static', filename='landing_page.js') }}"></script>
+
+    <!-- 
+    - ionicon link
+    -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
