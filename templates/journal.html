@@ -50,7 +50,7 @@
     <header class="header" data-header>
         <div class="container">
 
-            <a href="#" class="logo">
+            <a href="{{ url_for('homepage') }}" class="logo">
                 <img src="{{ url_for('static', filename='images/logo.svg') }}" width="148" height="38" alt="SafeSpace Logo">
             </a>
 
@@ -66,7 +66,7 @@
                 <ul class="navbar-list">
 
                     <li class="navbar-item">
-                        <a href="#" class="navbar-link" data-nav-link>Home</a>
+                        <a href="{{ url_for('homepage') }}" class="navbar-link" data-nav-link>Home</a>
                     </li>
 
                     <li class="navbar-item">
@@ -74,11 +74,11 @@
                     </li>
 
                     <li class="navbar-item">
-                        <a href="#" class="navbar-link" data-nav-link>Features</a>
+                        <a href="{{ url_for('about_team')}}" class="navbar-link" data-nav-link>Team</a>
                     </li>
 
                     <li class="navbar-item">
-                        <a href="#" class="navbar-link" data-nav-link>Team</a>
+                        <a href="#" class="navbar-link" data-nav-link>Contact Us</a>
                     </li>
 
                 </ul>
