@@ -145,7 +145,7 @@
         
                     <div class="footer-brand">
         
-                        <a href="#" class="logo">
+                        <a href="{{ url_for('homepage') }}" class="logo">
                             <img src="{{ url_for('static', filename='images/logo-footer.svg') }}" width="148" height="38" alt="SafeSpace - Home">
                         </a>
         
@@ -164,7 +164,7 @@
                         </li>
         
                         <li>
-                            <a href="#" class="footer-link">
+                            <a href="{{ url_for('homepage') }}" class="footer-link">
                                 <span class="span">Home</span>
         
                                 <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -177,19 +177,19 @@
         
                                 <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                             </a>
-                        </li>
+                        </li>                        
         
                         <li>
-                            <a href="#" class="footer-link">
-                                <span class="span">Features</span>
+                            <a href="{{ url_for('about_team')}}" class="footer-link">
+                                <span class="span">Team</span>
         
                                 <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                             </a>
                         </li>
-        
+
                         <li>
                             <a href="#" class="footer-link">
-                                <span class="span">Team</span>
+                                <span class="span">Contact Us</span>
         
                                 <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                             </a>
