@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+p<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -97,117 +97,121 @@
 
 
 
-
-
+    <!-- 
+        - #CONTACT US
+    -->
     <main>
         <article>
-
-            <!-- 
-                - #HERO
-            -->
-
-            <section class="section hero has-bg-image" aria-label="home">
+            <section>
                 <div class="container">
+                    <form action="{{ url_for('') }}" method="" class="contact-form">
+                        <h2 class="headline-sm">
+                            Get in touch
+                        </h2> 
 
-                    <div class="hero-content" data-reveal="left">
-                        <h1 class="h1 hero-title">Hey {{ first_name }}, How are you feeling today?</h1>
-
-                    </div>
-
-                </div>
-            </section>
-
-
-            <section class="section feature has-bg-image" aria-labelledby="feature-label"
-                style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')">
-                <div class="container">
-            
-                    <figure class="feature-banner" data-reveal="left">
-                        <img src="{{ url_for('static', filename='images/feature-banner.png') }}"  width="680" height="704" loading="lazy" alt="feature banner"
-                            class="w-100">
-                    </figure>
-            
-                    <div class="feature-content" data-reveal="right">
-            
-                        <h2 class="h3 section-title" id="feature-label">
-                            Get Help From A Professional Today
-                        </h2>
-            
-                        <p class="section-text">
-                          Mental health is just as important as physical health, and seeking help for mental health challenges is a sign of strength, not weakness. SafeSpace is here to support you on your mental health journey, and we are proud to offer the option to connect with trained and licensed therapists.....
-                          <a href="{{ url_for('therapists') }}">Read More</a>
+                        <p class="contact-text body-md">
+                            The SafeSpace will love to hear from you.
                         </p>
-            
-                        <a href="{{ url_for('therapist2') }}" class="btn btn-primary has-after">Get help from professionals</a>
 
+                        <div class="wrapper">
+                            <div>
+                                <label for="name" class="label">
+                                    First Name
+                                </label>
+
+                                <input type="text" name="name" id="name" placeholder="Name *" required class="input-field">
+                            </div>
+
+                            <div>
+                                <label for="email" class="label">
+                                    Your Email
+                                </label>
+
+                                <input type="email" name="email" id="email" placeholder="Email *" required class="input-field">
+                            </div>
+                            
+
+                        </div>
+
+                        <label for="message" class="label">
+                            Your message
+                        </label>
+                        <textarea name="message" id="message" placeholder="Your message *" required class="input-field">
+
+                        </textarea>
+
+                        <a href="{{ url_for('logout') }}" class="btn btn-primary has-after">Send Message</a>
+
+                    </form>
+
+                    <div class="contact-content">
+                        <ul class="footer-list">
+    
+                            <li>
+                                <p class="footer-list-title h5">Contacts</p>
+                            </li>
             
+                            <li>
+                                <address class="address">
+                                    <ion-icon name="location" aria-hidden="true"></ion-icon>
+            
+                                    <span class="span">Captain Kia Street, Road 789</span>
+                                </address>
+                            </li>
+            
+                            <li>
+                                <a href="mailto:hello@safespace.app" class="footer-link">
+                                    <ion-icon name="mail" aria-hidden="true"></ion-icon>
+            
+                                    <span class="span">hello@safespace.app</span>
+                                </a>
+                            </li>
+            
+                            <li>
+                                <a href="tel:+233 245645968" class="footer-link">
+                                    <ion-icon name="call" aria-hidden="true"></ion-icon>
+            
+                                    <span class="span">+233 245645968</span>
+                                </a>
+                            </li>
+            
+                            <li>
+                                <ul class="social-list">
+            
+                                    <li>
+                                        <a href="#" class="social-link">
+                                            <ion-icon name="logo-facebook"></ion-icon>
+                                        </a>
+                                    </li>
+            
+                                    <li>
+                                        <a href="#" class="social-link">
+                                            <ion-icon name="logo-instagram"></ion-icon>
+                                        </a>
+                                    </li>
+            
+                                    <li>
+                                        <a href="#" class="social-link">
+                                            <ion-icon name="logo-twitter"></ion-icon>
+                                        </a>
+                                    </li>
+            
+                        </ul>
+                    </li>
+    
+                </ul>
+
                     </div>
-            
                 </div>
             </section>
-
-
-            <section class="section feature has-bg-image" aria-labelledby="feature-label"
-                style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')">
-                <div class="container">
-            
-                    <div class="feature-content" data-reveal="right">
-            
-                        <h2 class="h3 section-title" id="feature-label">
-                            Find Latest Resources Today
-                        </h2>
-            
-                        <p class="section-text">
-                            Welcome to the Resources Page of SafeSpace! Here, we provide a wealth of valuable resources to support your mental health and well-being. Whether you're seeking information, guidance, or inspiration, our carefully curated collection of articles, videos, and tools will help you navigate your journey towards better mental health.
-                        </p>
-            
-                        <a href="{{ url_for('resources') }}" class="btn btn-primary has-after">Resources</a>
-
-            
-                    </div>
-
-                    <figure class="feature-banner" data-reveal="left">
-                        <img src="{{ url_for('static', filename='images/feature-banner.png') }}"  width="680" height="704" loading="lazy" alt="feature banner"
-                            class="w-100">
-                    </figure>
-            
-                </div>
-            </section>
-
-            <section class="section feature has-bg-image" aria-labelledby="feature-label"
-                style="background-image: url('{{ url_for('static', filename='images/hero-bg.png') }}')">
-                <div class="container">
-            
-                    <figure class="feature-banner" data-reveal="left">
-                        <img src="{{ url_for('static', filename='images/feature-banner.png') }}"  width="680" height="704" loading="lazy" alt="feature banner"
-                            class="w-100">
-                    </figure>
-            
-                    <div class="feature-content" data-reveal="right">
-            
-                        <h2 class="h3 section-title" id="feature-label">
-                            Start Journaling Today
-                        </h2>
-            
-                        <p class="section-text">
-                            We understand the importance of self-reflection and mental well-being, which is why we have added a journaling feature to our website. Begin your journey of self-discovery and personal growth by keeping a digital journal within our secure and private platform. Reflect on your thoughts, emotions, and experiences, and unlock the power of journaling to enhance your overall well-being. Start journaling today and embark on a path of self-awareness and self-care with SafeSpace.
-                        </p>
-            
-                        <a href="{{ url_for('journal') }}" class="btn btn-primary has-after">START JOURNALING</a>
-
-            
-                    </div>
-            
-                </div>
-            </section>
-
-
         </article>
     </main>
 
-        <!-- 
-            - #FOOTER
-        -->
+
+
+    <!-- 
+        - #FOOTER
+    -->
         
     <footer class="footer">
         <div class="container">
