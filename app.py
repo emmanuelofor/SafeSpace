@@ -229,6 +229,11 @@ def resources():
 def about_team():
     return render_template('about_team.html')
 
+# Defining routes for contact us page
+@app.route('/contact_us', methods=['GET'])
+def contact_us():
+    return render_template('contact_us.html')
+
 # Defining the user loader callback for the login manager
 @login_manager.user_loader
 def load_user(user_id):
