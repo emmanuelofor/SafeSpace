@@ -88,9 +88,17 @@ addBtn.addEventListener("click", e => {
         let currentDate = new Date(),
         month = months[currentDate.getMonth()],
         day = currentDate.getDate(),
-        year = currentDate.getFullYear();
+        year = currentDate.getFullYear(),
+        hour = currentDate.getHours(),
+        minute = currentDate.getMinutes();
 
-        let journalInfo = {title, description, date: `${month} ${day}, ${year}`}
+        // If minutes less than 10, add a leading '0'
+        minute = minute < 10 ? `0${minute}` : minute;
+
+        // Format the time in 24-hour format, you can change it according to your needs
+        let time = `${hour}:${minute}`;
+
+        let journalInfo = {title, description, date: `${month} ${day}, ${year}`, time} // Adding time here
         if(!isUpdate) {
             journals.push(journalInfo);
         } else {
@@ -102,3 +110,28 @@ addBtn.addEventListener("click", e => {
         closeIcon.click();
     }
 });
+
+function showjournals() {
+    if(!journals) return;
+    document.querySelectorAll(".journal").forEach(li => li.remove());
+    journals.forEach((journal, id) => {
+        let filterDesc = journal.description.replaceAll("\n", '<br/>');
+        let liTag = `<li class="journal">
+                        <div class="details">
+                            <p>${journal.title}</p>
+                            <span>${filterDesc}</span>
+                        </div>
+                        <div class="bottom-content">
+                            <span>${journal.date} ${journal.time}</span> <!-- Adding time here -->
+                            <div class="settings">
+                                <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
+                                <ul class="menu">
+                                    <li onclick="updatejournal(${id}, '${journal.title}', '${filterDesc}')"><i class="uil uil-pen"></i>Edit</li>
+                                    <li onclick="deletejournal(${id})"><i class="uil uil-trash"></i>Delete</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>`;
+        addBox.insertAdjacentHTML("afterend", liTag);
+    });
+}
