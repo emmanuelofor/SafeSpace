@@ -2,14 +2,6 @@
   #CONTACT
 \*-----------------------------------*/
 
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 a {
     color: inherit;
     text-decoration: none;
@@ -24,9 +16,12 @@ textarea {
 }
 
 html {
-    font-family: var(--ff-jost);
     font-size: 10px;
     scroll-behavior: smooth;
+}
+
+main {
+    margin-top: 90px;
 }
 
 body {
@@ -46,12 +41,6 @@ body {
     font-size: 1.8rem;
 }
 
-.has-bg-image {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
 label {
     display: block;
 }
@@ -62,7 +51,6 @@ label {
 
 .contact {
     background-color: rgb(44, 89, 157);
-    padding-block-start: 120px;
     align-content: center;
     align-items: center;
 }
@@ -134,7 +122,7 @@ textarea {
 @media (min-width: 768px) {
 
     .section {
-        padding-block: 100px;
+        padding-block: 50px;
     }
 
     .contact-form {
