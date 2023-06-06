@@ -12,7 +12,7 @@
 
     <!-- custom css link -->
     <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='resources.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
 
     <!-- 
     - google font link
@@ -146,63 +146,62 @@
                     </form>
 
                     <div class="contact-content">
-                        <ul class="footer-list">
-    
-                            <li>
-                                <p class="footer-list-title h5">Contacts</p>
+
+                            <ul class="contact-list">
+
+                            <li class="contact-item">
+
+                                <div class="item-icon" style="background-color: hsl(177, 39%, 72%)">
+                                <ion-icon name="call" aria-hidden="true"></ion-icon>
+                                </div>
+
+                                <div>
+                                <p class="label-lg">Phone</p>
+
+                                <a href="tel:+011236548096" class="body-lg">+01 123 654 8096</a>
+                                </div>
+
                             </li>
-            
-                            <li>
-                                <address class="address">
-                                    <ion-icon name="location" aria-hidden="true"></ion-icon>
-            
-                                    <span class="span">Captain Kia Street, Road 789</span>
+
+                            <li class="contact-item">
+
+                                <div class="item-icon" style="background-color: hsl(41, 99%, 64%)">
+                                <ion-icon name="mail" aria-hidden="true"></ion-icon>
+                                </div>
+
+                                <div>
+                                <p class="label-lg">Mail</p>
+
+                                <a href="tel:info@domainname.com" class="body-lg">info@domainname.com</a>
+                                </div>
+
+                            </li>
+
+                            <li class="contact-item">
+
+                                <div class="item-icon" style="background-color: hsl(19, 97%, 85%)">
+                                <ion-icon name="location" aria-hidden="true"></ion-icon>
+                                </div>
+
+                                <div>
+                                <p class="label-lg">Visit My Studio</p>
+
+                                <address class="body-lg">
+                                    Warnwe Park Streetperrine,
+                                    FL 33157 New York City
                                 </address>
+                                </div>
+
                             </li>
-            
-                            <li>
-                                <a href="mailto:hello@safespace.app" class="footer-link">
-                                    <ion-icon name="mail" aria-hidden="true"></ion-icon>
-            
-                                    <span class="span">hello@safespace.app</span>
-                                </a>
-                            </li>
-            
-                            <li>
-                                <a href="tel:+233 245645968" class="footer-link">
-                                    <ion-icon name="call" aria-hidden="true"></ion-icon>
-            
-                                    <span class="span">+233 245645968</span>
-                                </a>
-                            </li>
-            
-                            <li>
-                                <ul class="social-list">
-            
-                                    <li>
-                                        <a href="#" class="social-link">
-                                            <ion-icon name="logo-facebook"></ion-icon>
-                                        </a>
-                                    </li>
-            
-                                    <li>
-                                        <a href="#" class="social-link">
-                                            <ion-icon name="logo-instagram"></ion-icon>
-                                        </a>
-                                    </li>
-            
-                                    <li>
-                                        <a href="#" class="social-link">
-                                            <ion-icon name="logo-twitter"></ion-icon>
-                                        </a>
-                                    </li>
-            
-                        </ul>
-                    </li>
-    
-                </ul>
+
+                            </ul>
+
+                        </div>
+                    
+                                </ul>
 
                     </div>
+                    
                 </div>
             </section>
         </article>
