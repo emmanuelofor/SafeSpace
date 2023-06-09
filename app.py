@@ -1,6 +1,7 @@
 # Importing necessary modules
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
+from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Configuration
@@ -17,6 +18,9 @@ from models import User, Therapist, Resource, JournalEntry
 # Setting up the login manager
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+
+#setting up mail
+mail = Mail(app)
 
 # Defining the user loader callback for the login manager
 #@login_manager.user_loader
@@ -129,6 +133,33 @@ def delete_journal_entry(entry_id):
 
     # Indicate successful deletion and redirect to the journal entries list page
     return redirect(url_for('journal'))
+
+@app.route('/contact_us', methods=['GET', 'POST'])
+def contact_us():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        if not name or not email or not message:
+            return render_template('contact_us.html', error='All fields are required.')
+
+        # Saving message to the database
+        contact_message = ContactMessage(name=name, email=email, message=message)
+        db.session.add(contact_message)
+        db.session.commit()
+
+        # Sending email to the team
+        msg = Message(
+            subject="New message from contact form",
+            body=f"Name: {name}\nEmail: {email}\nMessage: {message}",
+            sender=app.config['MAIL_USERNAME'],
+            recipients=['safespaceteam@gmail.com']  # Safespace's team email
+        )
+        mail.send(msg)
+
+        return render_template('contact_us.html', message='Your message has been sent successfully.')
+    return render_template('contact_us.html')
+
 
 
 

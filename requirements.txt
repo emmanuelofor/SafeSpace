@@ -10,6 +10,6 @@ Werkzeug
 WTForms
 Flask-SQLAlchemy
 Flask-Migrate
-
+Flask-Mail
 
 
