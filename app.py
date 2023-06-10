@@ -13,7 +13,7 @@ app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
 
 #Importing the User and Therapist models
-from models import User, Therapist, Resource, JournalEntry
+from models import User, Therapist, Resource, JournalEntry, ContactMessage
 
 # Setting up the login manager
 login_manager = LoginManager(app)
@@ -153,7 +153,7 @@ def contact_us():
             subject="New message from contact form",
             body=f"Name: {name}\nEmail: {email}\nMessage: {message}",
             sender=app.config['MAIL_USERNAME'],
-            recipients=['safespaceteam@gmail.com']  # Safespace's team email
+            recipients=['emmanuel.ofori@kibo.school', 'faridat.ibidun@kibo.school', 'oluwafemisire.ojuawo@kibo.school', 'godfred.awudi@kibo.school']  # Safespace's team email
         )
         mail.send(msg)
 
@@ -229,7 +229,7 @@ def logout():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('About.html')
 
 @app.route('/team')
 def team():
@@ -261,9 +261,9 @@ def about_team():
     return render_template('about_team.html')
 
 # Defining routes for contact us page
-@app.route('/contact_us', methods=['GET'])
-def contact_us():
-    return render_template('contact_us.html')
+#@app.route('/contact_us', methods=['GET'])
+#def contact_us():
+    #return render_template('contact_us.html')
 
 # Defining the user loader callback for the login manager
 @login_manager.user_loader
