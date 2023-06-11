@@ -186,7 +186,7 @@
                     </li>
     
                     <li>
-                        <a href="#" class="footer-link">
+                        <a href="{{ url_for('homepage') }}" class="footer-link">
                             <span class="span">Home</span>
     
                             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -194,24 +194,24 @@
                     </li>
     
                     <li>
-                        <a href="#" class="footer-link">
+                        <a href="{{ url_for('about')}}" class="footer-link">
                             <span class="span">About</span>
     
                             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                         </a>
-                    </li>
+                    </li>                        
     
                     <li>
-                        <a href="#" class="footer-link">
-                            <span class="span">Features</span>
+                        <a href="{{ url_for('about_team')}}" class="footer-link">
+                            <span class="span">Team</span>
     
                             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                         </a>
                     </li>
-    
+
                     <li>
-                        <a href="#" class="footer-link">
-                            <span class="span">Team</span>
+                        <a href="{{ url_for('contact_us')}}"  class="footer-link">
+                            <span class="span">Contact Us</span>
     
                             <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
                         </a>
@@ -292,11 +292,11 @@
 
 
     <!-- custom js link -->
-  <script src="{{ url_for('static', filename='landing_page.js') }}"></script>
+    <script src="{{ url_for('static', filename='landing_page.js') }}"></script>
 
     <!-- 
     - ionicon link
-  -->
+    -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
