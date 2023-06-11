@@ -6,14 +6,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Configuration
 from database import db
-from models import User, Therapist, Resource, JournalEntry, ContactMessage
-from flask_migrate import Migrate
+from models import User, Therapist, Resource, JournalEntry
+
 
 # Setting up the Flask application
 app = Flask(__name__)
 app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
-migrate = Migrate(app, db)  # initialize Flask-Migrate
+
 
 mail = Mail(app)  # Set up Flask-Mail with the app's current configuration
 
@@ -134,37 +134,6 @@ def delete_journal_entry(entry_id):
     # Indicate successful deletion and redirect to the journal entries list page
     return redirect(url_for('journal'))
 
-@app.route('/contact_us', methods=['GET', 'POST'])
-def contact_us():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        #subject = request.form['subject']
-        message = request.form['message']
-
-        # Check if all fields are filled
-        if not name or not email  or not message:
-            return render_template('contact_us.html', error='All fields are required.')
-
-        # Saving message to the database
-        contact_message = ContactMessage(name=name, email=email, message=message)
-        db.session.add(contact_message)
-        db.session.commit()
-
-        # Sending email to the team
-        msg = Message(
-            #subject=f"New message from contact form: {subject}",
-            body=f"Name: {name}\nEmail: {email}\nMessage: {message}",
-            sender=app.config['MAIL_USERNAME'],
-            recipients=['safespace.kibo@gmail.com']  # Safespace's team email
-        )
-        mail.send(msg)
-
-        # Redirect to homepage instead of showing success message on the same page
-        return redirect(url_for('homepage'))
-    else:
-        return render_template('contact_us.html')
-
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -262,8 +231,8 @@ def about_team():
     return render_template('about_team.html')
 
 # Defining routes for contact us page
-#@app.route('/contact_us', methods=['GET'])
-#def contact_us():
+@app.route('/contact_us', methods=['GET'])
+def contact_us():
     #return render_template('contact_us.html')
 
 # Defining the user loader callback for the login manager

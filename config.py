@@ -9,11 +9,5 @@ class Configuration(object):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///safespace.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # Mail settings
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 465
-    MAIL_USE_TLS = False
-    MAIL_USE_SSL = True
-    MAIL_USERNAME = 'safespace.kibo@gmail.com'
-    MAIL_PASSWORD = 'FariEmmaGodFemi2023'
+
 
