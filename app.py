@@ -139,21 +139,21 @@ def contact_us():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
-        subject = request.form['subject']
+        #subject = request.form['subject']
         message = request.form['message']
 
         # Check if all fields are filled
-        if not name or not email or not subject or not message:
+        if not name or not email  or not message:
             return render_template('contact_us.html', error='All fields are required.')
 
         # Saving message to the database
-        contact_message = ContactMessage(name=name, email=email, subject=subject, message=message)
+        contact_message = ContactMessage(name=name, email=email, message=message)
         db.session.add(contact_message)
         db.session.commit()
 
         # Sending email to the team
         msg = Message(
-            subject=f"New message from contact form: {subject}",
+            #subject=f"New message from contact form: {subject}",
             body=f"Name: {name}\nEmail: {email}\nMessage: {message}",
             sender=app.config['MAIL_USERNAME'],
             recipients=['safespace.kibo@gmail.com']  # Safespace's team email
