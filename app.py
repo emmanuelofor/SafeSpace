@@ -237,11 +237,11 @@ def logout():
 
 @app.route('/about')
 def about():
-    return render_template('About.html')
+    return render_template('about.html')
 
 @app.route('/team')
 def team():
-    return render_template('about_team.htm')
+    return render_template('about_team.html')
 
 
 @app.route('/therapists')
