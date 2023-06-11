@@ -6,32 +6,18 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Configuration
 from database import db
-from models import ContactMessage
+from models import User, Therapist, Resource, JournalEntry, ContactMessage
 
 # Setting up the Flask application
 app = Flask(__name__)
 app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
 
-#Importing the User and Therapist models
-from models import User, Therapist, Resource, JournalEntry, ContactMessage
+mail = Mail(app)  # Set up Flask-Mail with the app's current configuration
 
 # Setting up the login manager
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-
-# Configure Flask-Mail with your email server settings
-mail_settings = {
-    "MAIL_SERVER": 'smtp.gmail.com',
-    "MAIL_PORT": 465,
-    "MAIL_USE_TLS": False,
-    "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": 'safespace.kibo@gmail.com',
-    "MAIL_PASSWORD": 'FariEmmaGodFemi2023'
-}
-app.config.update(mail_settings)
-mail = Mail(app)
-
 
 
 # Defining the user loader callback for the login manager
