@@ -22,10 +22,10 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 
-# Defining the user loader callback for the login manager
-#@login_manager.user_loader
-#def load_user(user_id):
-#    return User.query.get(int(user_id))
+#Defining the user loader callback for the login manager
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 # Defining routes and associated view functions for the application
 @app.route('/')
