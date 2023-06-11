@@ -235,10 +235,7 @@ def about_team():
 def contact_us():
     #return render_template('contact_us.html')
 
-# Defining the user loader callback for the login manager
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+
 
 # Define example therapists and resources
 example_therapists = [
