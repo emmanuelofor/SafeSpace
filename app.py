@@ -233,7 +233,7 @@ def about_team():
 # Defining routes for contact us page
 @app.route('/contact_us', methods=['GET'])
 def contact_us():
-    #return render_template('contact_us.html')
+    return render_template('contact_us.html')
 
 
 
