@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Configuration
 from database import db
+from models import ContactMessage
 
 # Setting up the Flask application
 app = Flask(__name__)
@@ -19,14 +20,19 @@ from models import User, Therapist, Resource, JournalEntry, ContactMessage
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'safespace.kibo@gmail.com' # replace with your email
-app.config['MAIL_PASSWORD'] = 'FariEmmaGodFemi2023' # replace with your email password
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-
+# Configure Flask-Mail with your email server settings
+mail_settings = {
+    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": 'safespace.kibo@gmail.com',
+    "MAIL_PASSWORD": 'FariEmmaGodFemi2023'
+}
+app.config.update(mail_settings)
 mail = Mail(app)
+
+
 
 # Defining the user loader callback for the login manager
 #@login_manager.user_loader
@@ -166,7 +172,8 @@ def contact_us():
         )
         mail.send(msg)
 
-        return render_template('contact_us.html', success='Your message has been sent.')
+        # Redirect to homepage instead of showing success message on the same page
+        return redirect(url_for('homepage'))
     else:
         return render_template('contact_us.html')
 
