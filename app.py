@@ -7,11 +7,13 @@ from datetime import datetime
 from config import Configuration
 from database import db
 from models import User, Therapist, Resource, JournalEntry, ContactMessage
+from flask_migrate import Migrate
 
 # Setting up the Flask application
 app = Flask(__name__)
 app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
+migrate = Migrate(app, db)  # initialize Flask-Migrate
 
 mail = Mail(app)  # Set up Flask-Mail with the app's current configuration
 
