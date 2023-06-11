@@ -1,7 +1,6 @@
 # Importing necessary modules
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Configuration
@@ -14,8 +13,6 @@ app = Flask(__name__)
 app.config.from_object(Configuration) # Database URI
 db.init_app(app)    # Initializing the SQLAlchemy database instance
 
-
-mail = Mail(app)  # Set up Flask-Mail with the app's current configuration
 
 # Setting up the login manager
 login_manager = LoginManager(app)
