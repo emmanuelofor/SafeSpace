@@ -19,7 +19,13 @@ from models import User, Therapist, Resource, JournalEntry, ContactMessage
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-#setting up mail
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'safespace.kibo@gmail.com' # replace with your email
+app.config['MAIL_PASSWORD'] = 'FariEmmaGodFemi2023' # replace with your email password
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
 mail = Mail(app)
 
 # Defining the user loader callback for the login manager
@@ -139,28 +145,30 @@ def contact_us():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
+        subject = request.form['subject']
         message = request.form['message']
-        if not name or not email or not message:
+
+        # Check if all fields are filled
+        if not name or not email or not subject or not message:
             return render_template('contact_us.html', error='All fields are required.')
 
         # Saving message to the database
-        contact_message = ContactMessage(name=name, email=email, message=message)
+        contact_message = ContactMessage(name=name, email=email, subject=subject, message=message)
         db.session.add(contact_message)
         db.session.commit()
 
         # Sending email to the team
         msg = Message(
-            subject="New message from contact form",
+            subject=f"New message from contact form: {subject}",
             body=f"Name: {name}\nEmail: {email}\nMessage: {message}",
             sender=app.config['MAIL_USERNAME'],
-            recipients=['emmanuel.ofori@kibo.school', 'faridat.ibidun@kibo.school', 'oluwafemisire.ojuawo@kibo.school', 'godfred.awudi@kibo.school']  # Safespace's team email
+            recipients=['safespace.kibo@gmail.com']  # Safespace's team email
         )
         mail.send(msg)
 
-        return render_template('contact_us.html', message='Your message has been sent successfully.')
-    return render_template('contact_us.html')
-
-
+        return render_template('contact_us.html', success='Your message has been sent.')
+    else:
+        return render_template('contact_us.html')
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -235,8 +243,6 @@ def about():
 def team():
     return render_template('about_team.htm')
 
-
-    
 
 @app.route('/therapists')
 def therapists():
@@ -315,8 +321,6 @@ with app.app_context():
             db.session.add(resource)
 
     db.session.commit()
-
-
 
 #Running the application with debug mode enabled
 if __name__ == '__main__':

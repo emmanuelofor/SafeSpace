@@ -111,7 +111,7 @@
         <section class="section contact" aria-labelledby="contact-label">
             <div class="container">
 
-            <form action="" class="contact-form">
+            <form action="{{ url_for('contact_us') }}" method="post" class="contact-form">
 
                 <h2 class="headline-sm" id="contact-label">Get in touch</h2>
 
@@ -141,7 +141,8 @@
                 <label for="message" class="label">Your message </label>
                 <textarea name="message" id="message" placeholder="Your message *" required class="input-field"></textarea>
 
-                <a href="#" class="btn btn-primary">Send Message</a>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+
 
             </form>
 
